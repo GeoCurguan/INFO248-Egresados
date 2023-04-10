@@ -10,5 +10,6 @@ Integrantes:
   <li>Jorge Andrade</li>
   <li>Estefano Espinoza</li>
   <li>Diego Hinrichs</li>
+  <li>Jhonatan Friz</li>
 <ul>
              
