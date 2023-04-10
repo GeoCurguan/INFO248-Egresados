@@ -1,5 +1,7 @@
 # Repositorio para la asignatura de INFO248-Egresados
-Integrantes: 
+
+Integrantes:
+
 <ul>
   <li>Geovanni Curguan</li>
   <li>José Aillapi</li>
@@ -11,5 +13,5 @@ Integrantes:
   <li>Estefano Espinoza</li>
   <li>Diego Hinrichs</li>
   <li>Jhonatan Friz</li>
+  <p>probando</p>
 <ul>
-             
