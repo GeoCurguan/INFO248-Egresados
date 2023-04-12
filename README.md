@@ -15,3 +15,33 @@ Integrantes:
   <li>Jhonatan Friz</li>
   <p>probando</p>
 <ul>
+=======
+
+## ¿Cómo hacer un commit (VSCode)?
+
+  1.- Moverse a la branch de desarollo o crear una.
+  ```bash
+  $ git switch dev
+  ```
+  
+  2.- Verificar nuestra **branch** actual (dev)
+  ```bash
+  $ git branch
+  ```
+  
+  3.- Añadir **cambios**
+  ```bash
+  $ git add .
+  ```
+
+  4.- Hacer **commit**
+  ```bash
+  $ git commit -m "Esto es un commit"
+  ```
+
+  5.- Hacer **push**
+  ```bash
+  $ git push origin dev
+  ```
+  6.- Verificar **Merge && pull** para revisión
+  (Eso se hace en git)
