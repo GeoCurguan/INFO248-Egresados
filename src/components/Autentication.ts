@@ -1,4 +1,4 @@
-import { Usuario } from "./usuario/Usuario"
+/* import { Usuario } from "./usuario/Usuario"
 
 class Autenticacion {
   //private usuario: Usuario;
@@ -11,4 +11,4 @@ class Autenticacion {
   public cerrarSesion(): void {
     // codigo de cerrar sesion
   }
-}
+} */
