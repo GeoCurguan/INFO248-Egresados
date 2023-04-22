@@ -1,7 +1,7 @@
 import { Usuario } from "./usuario/Usuario"
 
 class Autenticacion {
-  private usuario: Usuario;
+  //private usuario: Usuario;
 
   public autenticar(username: string, password: string): boolean {
     // codigo para autenticar
