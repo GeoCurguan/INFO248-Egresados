@@ -13,7 +13,9 @@ Integrantes:
   <li>Estefano Espinoza</li>
   <li>Diego Hinrichs</li>
   <li>Jhonatan Friz</li>
+  <p>probando</p>
 <ul>
+=======
 
 ## ¿Cómo hacer un commit (VSCode)?
 
