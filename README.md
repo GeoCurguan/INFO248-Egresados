@@ -43,3 +43,17 @@ Integrantes:
   ```
   6.- Verificar **Merge && pull** para revisión
   (Eso se hace en git)
+  
+## ¿Cómo iniciar App?
+  1.- Moverse a la raiz del proyecto ./src.
+  ```bash
+  $ npm i
+  ```
+  2.- Construir proyecto.
+  ```bash
+  $ npm run build
+  ```
+  3.- Iniciar proyecto.
+  ```bash
+  $ npm run start
+  ```
