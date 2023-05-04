@@ -1,8 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
-import loginRouter from "./routes/login";
-import usuarioRouter from "./routes/usuario";
-import postRouter from "./routes/post";
+import loginRouter from "./src/routes/login";
+import usuarioRouter from "./src/routes/usuario";
+import postRouter from "./src/routes/post";
 
 // Inicializamos express
 const app = express();
@@ -11,7 +11,6 @@ const app = express();
 app.use(bodyParser.json());
 
 // Rutas
-
 app.use("/api/posts", postRouter);
 app.use("/api/usuarios/", usuarioRouter);
 app.use("/login", loginRouter);
