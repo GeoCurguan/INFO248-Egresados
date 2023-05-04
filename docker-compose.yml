@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  egresados:
+    build:
+      context: .
+    container_name: egresados-api
+    ports:
+      - ${PORT}:3000

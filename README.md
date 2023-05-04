@@ -52,7 +52,7 @@ $ git push origin dev
 
 ## ¿Cómo iniciar App?
 
-1.- Moverse a la raiz del proyecto ./src (esto es mentira).
+1.- Instalar dependencias.
 
 ```bash
 $ npm i
@@ -74,4 +74,16 @@ $ npm run build
 
 ```bash
 $ npm run start
+```
+## ¿Cómo crear imagen Docker?
+
+0.- Antes
+```bash
+$ sudo systemctl start docker
+
+```
+1.- Ejecutar
+
+```bash
+$ docker compose up
 ```
