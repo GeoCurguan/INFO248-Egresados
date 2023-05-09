@@ -16,9 +16,9 @@ sudo npm install -g typescript
 
 Se crea una estructura de directorios basica:
 
-nombre_proyecto
-    \_ src
-    \_ dist (se crea automaticamente configurando tsconfig)
+nombre_proyecto</br>
+    \_ src</br>
+    \_ dist (se crea automaticamente configurando tsconfig)</br>
 
 En la raiz del proyecto:
 ```zsh
