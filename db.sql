@@ -1,7 +1,3 @@
-CREATE DATABASE IF NOT EXISTS db_egresados;
-
-USE db_egresados;
-
 CREATE TABLE IF NOT EXISTS Usuario(
     -- Informacion personal
     id INT NOT NULL AUTO_INCREMENT,
@@ -39,9 +35,8 @@ CREATE TABLE IF NOT EXISTS Trabajo(
     inicio varchar(255),
     fin varchar(255),
     PRIMARY KEY (id_trabajo),
-    FOREIGN KEY (ref_user_trabajo) REFERENCES User (id)
+    FOREIGN KEY (ref_user_trabajo) REFERENCES Usuario (id)
 );
-
 
 CREATE TABLE IF NOT EXISTS Ofertas(
     id_oferta INT NOT NULL AUTO_INCREMENT,
@@ -56,7 +51,7 @@ CREATE TABLE IF NOT EXISTS Ofertas(
     fecha_creacion varchar(255),
     visibilidad varchar(255),
     PRIMARY KEY (id_oferta),
-    FOREIGN KEY (ref_user_oferta) REFERENCES User (id)
+    FOREIGN KEY (ref_user_oferta) REFERENCES Usuario (id)
 );
 
 CREATE TABLE IF NOT EXISTS Publicaciones(
@@ -68,12 +63,10 @@ CREATE TABLE IF NOT EXISTS Publicaciones(
     -- Informacion extra
     fecha_creacion varchar(255),
     PRIMARY KEY (id_publicacion),
-    FOREIGN KEY (ref_user_publicacion) REFERENCES  User (id)
+    FOREIGN KEY (ref_user_publicacion) REFERENCES  Usuario (id)
 );
 
-
-show tables;
-INSERT INTO `User`(
+INSERT INTO `Usuario`(
     `rut`, `nombres`, `apellidos`, `telefono`, `descripcion`, `foto`,
     `pais`, `region`, `comuna`, `direccion`, 
     `instagram`, `twitter`, `facebook`, `linkedin`,
@@ -83,7 +76,7 @@ INSERT INTO `User`(
     'Chile','Metropolitana','Santiago','Av. Siempre Viva 123',
     '@juanperez','@juanperez','JuanPerez362','juanperez',
     'JuanPerez@gmail.com','password123','user');
-INSERT INTO `User`(
+INSERT INTO `Usuario`(
     `rut`, `nombres`, `apellidos`, `telefono`, `descripcion`, `foto`,
     `pais`, `region`, `comuna`, `direccion`, 
     `instagram`, `twitter`, `facebook`, `linkedin`,
@@ -112,6 +105,6 @@ INSERT INTO `Ofertas`(
     VALUES (
     2,'Titulo de la oferta','Descripcion de la oferta','1 año','100000','Tiempo completo','2022-12-12','visible');
 
-    -- Ejemplo consulta User con Trabajo; utilizando JOIN
-/* SELECT nombres,lugar_de_trabajo, inicio,fin FROM `User` INNER JOIN `Trabajo` ON `User`.`id` = `Trabajo`.`ref_user_trabajo`;
-*/ 
+-- Ejemplo consulta User con Trabajo; utilizando JOIN
+-- USE db_egresados;
+-- SELECT nombres,lugar_de_trabajo, inicio,fin FROM `Usuario` INNER JOIN `Trabajo` ON `Usuario`.`id` = `Trabajo`.`ref_user_trabajo`;

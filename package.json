@@ -1,12 +1,20 @@
 {
   "name": "test-db",
   "version": "1.0.0",
-  "description": "Para iniciar un proyecto en TypeScript Se debe tener instalador node.js en el sistema",
-  "main": "index.js",
+  "main": "app.ts",
   "scripts": {
+    "build": "npx tsc",
+    "start": "node ./dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "mysql2": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.1.1"
+  }
 }
