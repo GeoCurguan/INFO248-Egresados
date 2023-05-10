@@ -9,18 +9,9 @@ dotenv.config();
 //   multipleStatements: true // permite hacer multiples consultas en una sola llamada a la db
 // });
 
-export const connection =  mysql.createConnection({
-  host: 'localhost', // o la dirección de tu servidor de MySQL
-  user: 'diegoh', // el usuario de la base de datos
-  password:  '81384657', // la contraseña del usuario de la base de datos
-  multipleStatements: true // permite hacer multiples consultas en una sola llamada a la db
-});
-
-// conectamos a la base de datos
-connection.connect((error) => {
-  if (error) {
-    console.error('Error al conectarse a la base de datos:', error);
-    return;
-  }
-  console.log('Conectado a la base de datos');
+export const connection = mysql.createConnection({
+    host: 'localhost', // o la dirección de tu servidor de MySQL
+    user: 'diegoh', // el usuario de la base de datos
+    password: '81384657', // la contraseña del usuario de la base de datos
+    multipleStatements: true // permite hacer multiples consultas en una sola llamada a la db
 });

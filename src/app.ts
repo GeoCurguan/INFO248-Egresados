@@ -1,28 +1,13 @@
-import { connection } from "./db/connection"
-import * as fs from "fs";
+import crear_db from "./db/crear_db"
+import drop_db from "./db/drop_db";
+const readline = require('readline');
 
-// Copiar la ruta absoluta, la realativa da problemas
-const path_sql: string = "/home/diegoh/ing_software/test-db/db.sql"
-const sql = fs.readFileSync(path_sql, "utf8").trim();
+// Creamos base de datos
+crear_db(); 
 
-connection.connect((err) => {
-    if (err) throw err;
-    console.log('Conectado a la base de datos');
-  
-    // Crear la base de datos
-    connection.query('CREATE DATABASE IF NOT EXISTS db_egresados', (err, result) => {
-      if (err) throw err;
-      console.log('Base de datos creada');
-  
-      // Usar la base de datos
-      connection.query('USE db_egresados', (err, result) => {
-        if (err) throw err;
-        console.log('Usando la base de datos');
-  
-        connection.query(sql, (err, result) => {
-          if (err) throw err;
-          console.log('Tabla creada');
-        });
-      });
-    });
-  });
+// Solo para fines practios al hacer CTRL + C, se elimina la db
+process.on('SIGINT', () => {
+    console.log('Se ha recibido la señal SIGINT (CTRL+C).');
+    drop_db();
+    process.exit();
+});
