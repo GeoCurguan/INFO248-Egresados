@@ -2,7 +2,7 @@ import { connection } from './connection'
 import * as fs from "fs";
 
 // Copiar la ruta absoluta, la realativa da problemas
-const path_sql: string = "/home/diegoh/ing_software/test-db/db.sql"
+const path_sql: string = "/home/diegoh/ing_software/test-db/servidor/src/db/db.sql"
 const sql = fs.readFileSync(path_sql, "utf8").trim();
 
 const crear_db = () => {
@@ -20,6 +20,7 @@ const crear_db = () => {
         if (err) throw err;
         console.log('Usando la base de datos: db_egresados');
 
+        // Agregar tablas y data
         connection.query(sql, (err, result) => {
           if (err) throw err;
           console.log('Tablas creadas y data');
