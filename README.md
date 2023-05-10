@@ -43,6 +43,16 @@ npm install --save-dev @types/node
 
 # Configurar un nuevo usuario (root) en mysql (mariadb)
 
+Verificar que el servicio esta funcionando:
+```zsh
+ sudo systemctl status mariadb
+```
+
+En caso contrario:
+```zsh
+ sudo systemctl start mariadb
+```
+
 Iniciar sesion como root:
 ```zsh
 sudo mysql -u root
