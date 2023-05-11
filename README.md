@@ -14,7 +14,7 @@ Ejemplo:
 ```
 nombre_proyecto
     \_ src
-    \_ dist (se crea automaticamente configurando tsconfig)
+    \_ dist* (*se crea automaticamente configurando tsconfig)
 ```
 
 # En la raiz del proyecto:

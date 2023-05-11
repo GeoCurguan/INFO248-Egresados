@@ -7,9 +7,10 @@ export class UserPublicador extends Usuario {
         nombreUsuario: string,
         contrasenia: string,
         rol: string,
-        id: number
+        id: number,
+        publicaciones: []
     ) {
-        super(nombreUsuario, contrasenia, rol, id);
+        super(nombreUsuario, contrasenia, rol, id, publicaciones);
     };
     publicarNoticia(noticia: Noticia): void { };
     eliminarNoticia(noticia: Noticia): void { };

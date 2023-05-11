@@ -6,9 +6,10 @@ export class Secretaria extends UserPublicador {
         nombreUsuario: string,
         contrasenia: string,
         rol: string,
-        id: number
+        id: number,
+        publicaciones: []
     ) {
-        super(nombreUsuario, contrasenia, rol, id);
+        super(nombreUsuario, contrasenia, rol, id, publicaciones);
     };
     getNombre() {
         return this.nombre
