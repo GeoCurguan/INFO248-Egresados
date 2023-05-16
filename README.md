@@ -1,4 +1,4 @@
-# Configuraciones iniciales (para otro iniciar de cero):
+# Configuraciones iniciales:
 Ejecutar: 
 ```zsh
 sudo npm install typescript tsc-node
