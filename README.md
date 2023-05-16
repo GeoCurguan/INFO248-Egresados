@@ -1,14 +1,8 @@
-# Configuraciones iniciales:
+# Configuraciones iniciales (para otro iniciar de cero):
 Ejecutar: 
 ```zsh
-npm install -g typescript
+sudo npm install typescript tsc-node
 ```
-
-El comando anterior instala TS en el proyecto Utilizar <i>sudo</i> en caso de error
-```zsh
-sudo npm install -g typescript
-```
-
 # Se crea una estructura de directorios basica:
 Ejemplo:
 ```
@@ -29,11 +23,16 @@ tsc --init
 ```
 Ya se puede escribir codigo TS en ./src
 
-# Dependencias utilizadas
+# Dependencias utilizadas (en caso de algun error)
 
 Libreria para sql, permite realizar operaciones
 ```zsh
 npm install mysql2
+
+```
+Express
+```zsh
+npm install express @types/express
 ```
 
 En caso de error con el modulo `fs`
