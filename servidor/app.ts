@@ -1,15 +1,18 @@
-import crear_db from "./src/db/crear_db"
-import drop_db from "./src/db/drop_db";
-import { Perfil } from "./src/components/perfil/perfil";
-// Creamos base de datos con informacion
-crear_db(); 
+import express from "express";
+import bodyParser from "body-parser";
+import crearDatabase from "./src/routes/creardb"
+import borrarDatabase from "./src/routes/borrardb"
 
-// const perfil = new Perfil('Manuel', 'manuel.care@alumnos.uach.cl', '87654321', 'informatica', 2025);
-// console.log("nombre: " + perfil.getNombre());
+// Inicializamos express
+const app = express();
 
-// Solo para fines practios al hacer CTRL + C, se elimina la db
-process.on('SIGINT', () => {
-    console.log('Se ha recibido la señal SIGINT (CTRL+C).');
-    drop_db();
-    process.exit();
+// Middleware para parsear el body de las peticiones
+app.use(bodyParser.json());
+
+// Rutas
+app.use("/creardb", crearDatabase);
+app.use("/borrardb", borrarDatabase);
+
+app.listen(3000, () => {
+  console.log("Servidor iniciado en el puerto http://localhost:3000");
 });
