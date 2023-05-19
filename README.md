@@ -1,3 +1,10 @@
+# Hacer git clone a la rama
+
+Ejecutar en consola
+```zsh
+git clone --branch <branchname> <remote-repo-url>
+```
+
 # Configuraciones iniciales:
 Ejecutar: 
 ```zsh
