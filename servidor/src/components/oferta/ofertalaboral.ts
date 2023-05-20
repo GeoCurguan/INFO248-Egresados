@@ -4,6 +4,7 @@ export class OfertaLaboral extends Publicacion {
         public empresa: string,
         public sueldo: number,
         public requisitos: object, // deberia ser una lista de string
+        public autor: string,
         id: number,
         titulo: string,
         descripcion: string,

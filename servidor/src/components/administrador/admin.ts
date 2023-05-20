@@ -9,8 +9,11 @@ export class Admin extends UserPublicador {
         publicaciones: []
     ) {
         super(nombreUsuario, contrasenia, rol, id, publicaciones);
-    };;
+    };
     getNombre() {
         return this.nombre
     };
+    registrarUSuario(excel: string): void {
+        //Registra usuario
+    }
 };

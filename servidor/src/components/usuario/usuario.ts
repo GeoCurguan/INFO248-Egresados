@@ -1,3 +1,4 @@
+import { OfertaLaboral } from "../oferta/ofertalaboral";
 import { Publicacion } from "../publicacion/publicacion";
 export class Usuario {
     constructor(
@@ -9,4 +10,6 @@ export class Usuario {
     ) { }
     
     getNombreUsuario(): void { }
+    PublicarOfertaLaboral( oferta: OfertaLaboral): void {}
+    registrarUSuario(excel: string): void {}
 }
