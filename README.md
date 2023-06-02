@@ -39,7 +39,7 @@ npm install mysql2
 ```
 Express
 ```zsh
-npm install express @types/express
+npm install express-handlebars express-flash @types/express @types/express-session
 ```
 
 En caso de error con el modulo `fs`
@@ -83,4 +83,21 @@ exit
 Iniciar sesion como el nuevo usuario:
 ```zsh
 mysql -u user_name -p
+```
+# Para AUTH0
+Suponinendo que extress ya esta instalado, si no lo esta, instalar.
+```zsh
+npm install @types/passport passport-local
+```
+Para autenticacion con Google
+```zsh
+npm install passport-google-oauth20
+```
+
+En el .env configurado anteriomente
+```
+PORT=3000
+CLIENT_ID=your_auth0_client_id
+SECRET='your_auth0_client_secret'
+ISSUER_BASE_URL=https://localhost
 ```

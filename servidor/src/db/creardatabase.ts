@@ -2,7 +2,7 @@ import { connection } from './connection'
 import * as fs from "fs";
 
 // Copiar la ruta absoluta, la realativa da problemas
-const path_sql: string = "/home/diegoh/ing_software/test-db/servidor/src/db/db.sql"
+const path_sql: string = "/home/diegoh/ing_software/proyecto_egresados/INFO248-Egresados/db.sql"
 const sql = fs.readFileSync(path_sql, "utf8").trim();
 
 const crearDatabase = () => {
