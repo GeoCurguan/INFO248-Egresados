@@ -18,15 +18,18 @@ const Login = () => {
     // Validaciones previas
     if (!username || !password) return;
 
-    const res = await fetch("http://localhost:3000/api/auth/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({ email: username, password: password }),
-      credentials: "include",
-    });
+    const res = await fetch(
+      process.env.NEXT_PUBLIC_URL_BACKEND + "/api/auth/signin",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ email: username, password: password }),
+        credentials: "include",
+      }
+    );
 
     if (res.ok) {
       const data = await res.json();
@@ -35,7 +38,7 @@ const Login = () => {
       console.log(_id);
       handleLogin(_id);
       router.push("/perfil");
-    }else{
+    } else {
       setLoginMessage("Usuario Incorrecto o No Registrado");
     }
   };
@@ -61,11 +64,7 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {
-        <>
-          {loginMessage ? <span> {loginMessage}</span> : <></>}
-        </>
-        }
+        {<>{loginMessage ? <span> {loginMessage}</span> : <></>}</>}
 
         <button type="submit" className="bg-gray-900 text-white p-2 rounded-lg">
           Login
