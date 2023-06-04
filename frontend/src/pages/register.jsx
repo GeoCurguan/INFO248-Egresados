@@ -9,23 +9,7 @@ const Register = () => {
     const [isUserRegisterMsg, setIsUserRegisterMsg] = useState("");
     const handleSubmit = async (e) => {
         e.preventDefault();
-        /*const isUserRegister = await fetch("http://localhost:3000/api/auth/isusercreated", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            body: JSON.stringify({ email: email}),
-            credentials: "include",
-        });
-        console.log("comprueba que existe o no");
-        if(!isUserRegister.ok){
-            setIsUserRegisterMsg("Usuario Ingresado ya Existe");
-            console.log("usuario existe");
-            */
-        //}else{
-            //console.log("usuario NO existe");
-            const res = await fetch("http://localhost:3000/api/auth/signup", {
+        const res = await fetch("http://localhost:3000/api/auth/signup", {
                 method: "POST",
                 headers: {
                 "Content-Type": "application/json",
@@ -38,8 +22,7 @@ const Register = () => {
                 console.log("Usuario creado correctamente")
             }else{
                 console.log("Usuario existe y no se puede jajaja usuario")
-            }
-        //}
+        }
     }
     return(
         <>
