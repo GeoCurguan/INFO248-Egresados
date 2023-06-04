@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Variables Globales */
+:root {
+  --nav-bg: #ff7b5d;
+  --nav-contact: #373737;
+}
