@@ -2,16 +2,18 @@ import express, { Application } from "express";
 import authRoutes from "./routes/auth";
 import morgan from "morgan";
 import cors from "cors";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app: Application = express();
 
 //Settings
-app.set("port", 3000);
+app.set("port", process.env.PORT_BACKEND || 5000);
 
 //Middleware
 app.use(
   cors({
-    origin: "http://localhost:3001",
+    origin: process.env.URL_FRONTEND || "http://localhost:3000",
     credentials: true, // Agrega esta lsínea paras permitir el envío de credenciales
   })
 );
