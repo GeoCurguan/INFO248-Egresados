@@ -72,9 +72,9 @@ const Login = () => {
       </form>
       <button
         className="bg-gray-900 text-white p-2 rounded-lg"
-        onClick={() => router.push("/perfil")}
+        onClick={() => router.push("/register")}
       >
-        Protected Ruta
+        Crear Cuenta
       </button>
     </div>
   );
