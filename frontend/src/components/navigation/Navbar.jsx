@@ -1,13 +1,14 @@
 import Contact from "@/components/navigation/contact/Contact";
 import LogoUach from "./orange/LogoUach";
 import LogoFCI from "./orange/LogoFCI";
+import Links from "./links/Links";
 
 const Navbar = () => {
   return (
     <>
       <Contact />
-      <nav className="navbar navbar-expand-lg navbar-light bg-[--nav-bg]">
-        <div className="grid grid-cols-10 py-4 items-center">
+      <header>
+        <div className="grid grid-cols-10 py-4 items-center bg-[--nav-bg]">
           {/* Logo Uach 1/10 */}
           <LogoUach />
           {/* Egresados Facultad de Ciencias de la Ingeniería 4/10*/}
@@ -17,7 +18,8 @@ const Navbar = () => {
           {/* Logo FCIUach 5/10*/}
           <LogoFCI />
         </div>
-      </nav>
+        <Links />
+      </header>
     </>
   );
 };
