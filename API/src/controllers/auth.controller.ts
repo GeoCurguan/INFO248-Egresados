@@ -7,9 +7,11 @@ export const signup = async (req: Request, res: Response) =>{
     if(emailvalidation) return res.status(400).json('Ya existe un usuario');
     //Guardando nuevo usuario
     const user: IUser = new User({
-        username: req.body.username,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        nombres: req.body.nombres,
+        apellidos: req.body.apellidos,
+        rut: req.body.rut
     });
 
     user.password = await user.encryptPassword(user.password);
@@ -20,7 +22,7 @@ export const signup = async (req: Request, res: Response) =>{
 
     const token:string = jwt.sign({_id: savedUser._id}, process.env.TOKEN_SECRET || "tokentest");   //El segundo parametro es el token
 
-    res.header('auth-token',token).json(savedUser); //s
+    res.header('auth-token',token).json(savedUser);
 };
 export const signin = async (req: Request, res: Response) =>{
 
