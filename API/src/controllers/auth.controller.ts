@@ -3,13 +3,15 @@ import User, {IUser} from '../models/User';
 import jwt from 'jsonwebtoken';
 
 export const signup = async (req: Request, res: Response) =>{
-
+    const emailvalidation = await User.findOne({email: req.body.email});
+    if(emailvalidation) return res.status(400).json('Ya existe un usuario');
     //Guardando nuevo usuario
     const user: IUser = new User({
         username: req.body.username,
         email: req.body.email,
         password: req.body.password
     });
+
     user.password = await user.encryptPassword(user.password);
     //console.log(user);s
     const savedUser = await user.save(); //Metodo asincrono
@@ -34,8 +36,11 @@ export const signin = async (req: Request, res: Response) =>{
     res.header('auth-token',token).json(user);
 
 };
+
+//isusercreated se puede renombrar y darle otra funcionalidad, lo dejo para copiar la forma de agregar más "endpoints" y funcionalidades
 export const isusercreated = async (req: Request, res: Response) =>{
     const user = await User.findOne({email: req.body.email});
+    console.log(user);
     if (user){
         return res.status(400).json('User Exist');
     }
