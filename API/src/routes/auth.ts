@@ -1,6 +1,6 @@
 import {Router} from 'express';
 import {signin, signup, isusercreated ,profile, logout} from '../controllers/auth.controller';
-import { TokenValidation } from '../libs/verifyToken';
+import { AuthToken} from '../libs/AuthToken';
 
 
 const router:Router = Router();
@@ -11,8 +11,8 @@ router.post('/signin', signin);
 router.post('/isusercreated', isusercreated);
 
 //Rutas protegidas
-router.get('/profile', TokenValidation,profile);
+router.get('/profile', AuthToken.TokenValidation,profile);
 
-router.get('/logout', TokenValidation, logout);
+router.get('/logout', AuthToken.TokenValidation, logout);
 
 export default router;

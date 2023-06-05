@@ -12,6 +12,7 @@ export const signup = async (req: Request, res: Response) =>{
         nombres: req.body.nombres,
         apellidos: req.body.apellidos,
         rut: req.body.rut
+        
     });
 
     user.password = await user.encryptPassword(user.password);
