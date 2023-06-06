@@ -6,10 +6,8 @@ import { useEffect } from "react";
 import { useAuthContext } from "../context/MyAuthContext";
 
 const Ruta = () => {
-  const { auth, handleLogout } = useAuthContext();
+  const { auth, user, handleLogout } = useAuthContext();
   const router = useRouter();
-
-  console.log(auth);
 
   useEffect(() => {
     if (!auth) {
@@ -19,9 +17,11 @@ const Ruta = () => {
 
   if (!auth) return null;
 
+  console.log("from Perfil:", user);
   return (
     <div>
       <h1>Ruta protegida</h1>
+      <h2>Hola {user.nombres}</h2>
       <button
         className="bg-gray-900 text-white p-2 rounded-lg"
         onClick={handleLogout}

@@ -1,27 +1,31 @@
-import { Request, Response, NextFunction } from "express"
+import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 //Middleware para que en base a que si tiene o no el token pueda entrar a ciertas rutas
 
-interface IPayload{
-    _id: string;
-    iat: number;
-    exp: number;
-
+interface IPayload {
+  _id: string;
+  iat: number;
+  exp: number;
 }
 export class AuthToken {
-    public static TokenValidation(req: Request, res: Response, next: NextFunction) {
-      const token = req.header('auth-token');
-      if (!token) return res.status(401).json('Acceso denegado');
-  
-      const payload = jwt.verify(token, process.env.TOKEN_SECRET || 'tokentest') as IPayload;
-  
-      req.userId = payload._id;
-  
-      next();
-    }
+  public static TokenValidation(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) {
+    const token = req.header("auth-token");
+    if (!token) return res.status(401).json("Acceso denegado");
+
+    const payload = jwt.verify(
+      token,
+      process.env.TOKEN_SECRET || "tokentest"
+    ) as IPayload;
+
+    req.userId = payload._id;
+
+    next();
   }
-
-
+}
 
 // export const TokenValidation = (req: Request, res: Response, next: NextFunction) => {
 
@@ -29,7 +33,6 @@ export class AuthToken {
 //     if(!token) return res.status(401).json('Acceso denegado');
 
 //     const payload = jwt.verify(token, process.env.TOKEN_SECRET || 'tokentest') as IPayload;
-    
 
 //     req.userId = payload._id;
 
