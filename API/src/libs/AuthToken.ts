@@ -16,13 +16,20 @@ export class AuthToken {
     const token = req.header("auth-token");
     if (!token) return res.status(401).json("Acceso denegado");
 
-    const payload = jwt.verify(
-      token,
-      process.env.TOKEN_SECRET || "tokentest"
-    ) as IPayload;
-
-    req.userId = payload._id;
-
+    try {
+      const payload = jwt.verify(
+        token,
+        process.env.TOKEN_SECRET || "tokentest"
+      ) as IPayload;
+    
+      req.userId = payload._id;
+    
+      next();
+    } catch (error) {
+      // Manejo de errores de verificación del token
+      res.status(401).json("Token inválido o expirado");
+    }
+    
     next();
   }
 }
