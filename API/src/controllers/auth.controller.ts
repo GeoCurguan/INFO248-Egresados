@@ -11,7 +11,8 @@ export const signup = async (req: Request, res: Response) =>{
         password: req.body.password,
         nombres: req.body.nombres,
         apellidos: req.body.apellidos,
-        rut: req.body.rut
+        rut: req.body.rut,
+        rol: req.body.rol
         
     });
 

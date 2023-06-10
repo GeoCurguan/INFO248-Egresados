@@ -58,7 +58,7 @@ const userSchema = new Schema({
     },
     rol: {
         type: String,
-        default: "Egresado",
+        //default: "Egresado",
         required: true
     },
     telefono: {
