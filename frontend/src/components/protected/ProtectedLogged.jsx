@@ -5,7 +5,7 @@ import { useAuthContext } from "@/context/MyAuthContext";
 // Se encarga de verificar si el usuario esta logueado
 // Si no esta logueado, lo redirecciona a la pagina de login
 
-const ProtectedEgresado = ({ children }) => {
+const ProtectedLogged = ({ children }) => {
   const { auth } = useAuthContext();
   const router = useRouter();
 
@@ -19,4 +19,4 @@ const ProtectedEgresado = ({ children }) => {
   return <>{children}</>;
 };
 
-export default ProtectedEgresado;
+export default ProtectedLogged;

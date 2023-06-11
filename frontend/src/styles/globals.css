@@ -8,7 +8,33 @@
   --nav-contact: #373737;
 }
 
-.profileDataContainer{
+.profileDataContainer {
   display: flex;
   flex-direction: row;
+}
+
+/* Remove outline on inputs, selects, etc */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+/* Changing ScrollBar */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b9b9b9;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #757575;
 }
