@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+
 //Middleware para que en base a que si tiene o no el token pueda entrar a ciertas rutas
 
 interface IPayload {
@@ -7,6 +8,7 @@ interface IPayload {
   iat: number;
   exp: number;
 }
+
 export class AuthToken {
   public static TokenValidation(
     req: Request,
@@ -21,18 +23,17 @@ export class AuthToken {
         token,
         process.env.TOKEN_SECRET || "tokentest"
       ) as IPayload;
-    
+
       req.userId = payload._id;
-    
+
       next();
     } catch (error) {
       // Manejo de errores de verificación del token
-      res.status(401).json("Token inválido o expirado");
+      return res.status(401).json("Token inválido o expirado");
     }
-    
-    next();
   }
 }
+
 
 // export const TokenValidation = (req: Request, res: Response, next: NextFunction) => {
 

@@ -4,6 +4,7 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAuthContext } from "../context/MyAuthContext";
+import ProfileSummary from "@/components/profile/ProfileSummary";
 
 const Ruta = () => {
   const { auth, user, handleLogout } = useAuthContext();
@@ -20,6 +21,7 @@ const Ruta = () => {
   console.log("from Perfil:", user);
   return (
     <div>
+      <ProfileSummary />
       <h1>Ruta protegida</h1>
       <h2>Hola {user.nombres}</h2>
       <button
