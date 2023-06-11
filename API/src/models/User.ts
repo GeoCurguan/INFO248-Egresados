@@ -1,3 +1,4 @@
+import { PasswordController} from '../libs/PasswordController';
 import {Schema, model, Document} from 'mongoose';
 import bcrypt from 'bcryptjs';
 export interface IUser extends Document {
@@ -57,7 +58,7 @@ const userSchema = new Schema({
     },
     rol: {
         type: String,
-        default: "Egresado",
+        //default: "Egresado",
         required: true
     },
     telefono: {
@@ -118,12 +119,11 @@ const userSchema = new Schema({
 });
 
 userSchema.methods.encryptPassword = async (password: string): Promise<string> => {
-    const salt = await bcrypt.genSalt(10);
-    return bcrypt.hash(password, salt);
+    return PasswordController.encryptPassword(password);
 };
 
 userSchema.methods.validatePassword = async function (password:string): Promise<boolean> {
-    return await bcrypt.compare(password, this.password);
+    return PasswordController.validatePassword(password, this.password);
 }
 
 

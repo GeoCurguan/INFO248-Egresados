@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 TESTING:
 
 instalar dependencias:
@@ -11,3 +12,25 @@ comando de testeo:
 ```
 npx mocha --require ts-node/register ./__test__/user.test.ts
 ```
+=======
+# Cómo Testear la API
+
+## SIGNIN
+
+### Request URL
+
+**(POST) SIGN IN:**
+
+```bash
+http://localhost:4000/api/auth/signin
+```
+
+**BODY**
+
+```json
+{
+  "email": "test@gmail.com",
+  "password": "test"
+}
+```
+>>>>>>> ac8a947c37bd0a8fbbf0339449d0a5ace38bc346

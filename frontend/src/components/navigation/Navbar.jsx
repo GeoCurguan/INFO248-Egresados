@@ -8,7 +8,7 @@ const Navbar = () => {
     <>
       <Contact />
       <header>
-        <div className="grid grid-cols-10 py-4 items-center bg-[--nav-bg]">
+        <div className="grid grid-cols-10 py-4 items-center bg-[--primary]">
           {/* Logo Uach 1/10 */}
           <LogoUach />
           {/* Egresados Facultad de Ciencias de la Ingeniería 4/10*/}

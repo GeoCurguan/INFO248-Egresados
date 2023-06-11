@@ -11,14 +11,16 @@ export const signup = async (req: Request, res: Response) =>{
         password: req.body.password,
         nombres: req.body.nombres,
         apellidos: req.body.apellidos,
-        rut: req.body.rut
+        rut: req.body.rut,
+        rol: req.body.rol
+
     });
 
     user.password = await user.encryptPassword(user.password);
     //console.log(user);s
     const savedUser = await user.save(); //Metodo asincrono
 
-    ///CREANDO TOKEN
+    ///CREANDO TOKENs
 
     const token:string = jwt.sign({_id: savedUser._id}, process.env.TOKEN_SECRET || "tokentest");   //El segundo parametro es el token
 
@@ -48,8 +50,11 @@ export const isusercreated = async (req: Request, res: Response) =>{
     }
 }
 
+
+//Recibe el auth-token en el profile
 export const profile = async (req: Request, res: Response) =>{
     const user = await User.findById(req.userId, {password : 0});
+    console.log("NO SE ENCONTRO PERRO")
     if(!user) return res.status(404).json('No User Found');
     res.json(user);
 
@@ -58,4 +63,42 @@ export const profile = async (req: Request, res: Response) =>{
 export const logout = (req: Request, res: Response) => {
     res.removeHeader('auth-token');
     res.json({ message: 'Logged out successfully' });
+  };
+
+//Por ahora solo responde con el perfil completo
+//TODO: Edición del perfil, pero el masternani dijo q lo haría
+/*export const editProfile = async (req: Request, res: Response) => {
+    const user = await User.findById(req.userId, {password : 0});
+
+};
+*/
+export const editProfile = async (req: Request, res: Response) => {
+    try {
+      const updatedUser: IUser | null = await User.findByIdAndUpdate(
+        req.userId,
+        {
+            password: req.body.password,
+            telefono: req.body.telefono,
+            descripcion: req.body.descripcion,
+            foto: req.body.foto,
+            pais: req.body.pais,
+            region: req.body.region,
+            comuna: req.body.comuna,
+            direccion: req.body.direccion,
+            instagram: req.body.instagram,
+            twitter: req.body.twitter,
+            facebook: req.body.facebook,
+            linkedin: req.body.linkedin,
+        },
+        { new: true }
+    );
+
+    if (!updatedUser) {
+        return res.status(404).json("No User Found");
+    }
+
+    return res.json(updatedUser);
+    } catch (error) {
+        return res.status(500).json("Internal Server Error");
+    }
   };

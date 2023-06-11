@@ -14,7 +14,8 @@ app.set("port", process.env.PORT_BACKEND || 5000);
 app.use(
   cors({
     origin: process.env.URL_FRONTEND || "http://localhost:3000",
-    credentials: true, // Agrega esta lsínea paras permitir el envío de credenciales
+    credentials: true, // Agrega esta lsínea paras permitir el envío de credencssiales
+    exposedHeaders: ["auth-token"], // Agrega esta línea para permitir el encabezado
   })
 );
 app.use(morgan("dev"));
