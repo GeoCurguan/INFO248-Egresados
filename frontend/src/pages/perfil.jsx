@@ -1,34 +1,35 @@
 // Ruta protegida,
 // Valida [auth]
 
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { useAuthContext } from "../context/MyAuthContext";
+import ProfileSummary from "@/components/profile/ProfileSummary";
+import ProtectedLogged from "@/components/protected/ProtectedLogged";
+import ProfileForm from "@/components/profile/ProfileForm";
 
 const Ruta = () => {
-  const { auth, handleLogout } = useAuthContext();
-  const router = useRouter();
-
-  console.log(auth);
-
-  useEffect(() => {
-    if (!auth) {
-      router.push("/login");
-    }
-  }, [auth]);
-
-  if (!auth) return null;
+  const { user, handleLogout } = useAuthContext();
 
   return (
-    <div>
-      <h1>Ruta protegida</h1>
-      <button
-        className="bg-gray-900 text-white p-2 rounded-lg"
-        onClick={handleLogout}
-      >
-        Logout
-      </button>
-    </div>
+    <ProtectedLogged>
+      <div>
+        <div className="profileDataContainer">
+          <ProfileSummary
+            name={user.nombres}
+            surname={user.apellidos}
+            dni={user.rut}
+            email={user.email}
+            role={user.rol}
+          />
+          <ProfileForm userId={user._id}/>
+        </div>
+        <button
+          className="bg-gray-900 text-white p-2 rounded-lg"
+          onClick={handleLogout}
+        >
+          Logout
+        </button>
+      </div>
+    </ProtectedLogged>
   );
 };
 

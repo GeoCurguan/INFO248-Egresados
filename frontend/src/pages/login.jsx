@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 import { useAuthContext } from "../context/MyAuthContext";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("test@gmail.com");
+  const [password, setPassword] = useState("test");
 
   const [loginMessage, setLoginMessage] = useState("");
 
@@ -32,11 +32,8 @@ const Login = () => {
     );
 
     if (res.ok) {
-      const data = await res.json();
-      const { _id } = data;
-      console.log("Login success");
-      console.log(_id);
-      handleLogin(_id);
+      const token = res.headers.get("auth-token");
+      handleLogin(token);
       router.push("/perfil");
     } else {
       setLoginMessage("Usuario Incorrecto o No Registrado");
@@ -72,9 +69,9 @@ const Login = () => {
       </form>
       <button
         className="bg-gray-900 text-white p-2 rounded-lg"
-        onClick={() => router.push("/perfil")}
+        onClick={() => router.push("/register")}
       >
-        Protected Ruta
+        Crear Cuenta
       </button>
     </div>
   );

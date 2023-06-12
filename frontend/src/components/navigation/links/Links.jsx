@@ -15,8 +15,10 @@ export const ButtonLogin = () => {
 export const ButtonLogout = () => {
   return <button>{/* Icon 2 if logut */}logout</button>;
 };
+
 const Links = () => {
   const { auth } = useAuthContext();
+  console.log("auth from LINKS: ", auth);
 
   return (
     <nav>
@@ -29,7 +31,7 @@ const Links = () => {
         <li>
           {/* Icon 1 if !login */}
           <button></button>
-          {auth ? <ButtonLogout /> : <ButtonLogin />}
+          {/* {auth ? <ButtonLogout /> : <ButtonLogin />} */}
           {/* Icon 2 if logut */}
         </li>
       </ul>
