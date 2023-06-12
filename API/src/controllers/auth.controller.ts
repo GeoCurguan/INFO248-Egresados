@@ -74,8 +74,8 @@ export const logout = (req: Request, res: Response) => {
 */
 export const editProfile = async (req: Request, res: Response) => {
     try {
-      const updatedUser: IUser | null = await User.findByIdAndUpdate(
-        req.userId,
+    const updatedUser: IUser | null = await User.findByIdAndUpdate(
+        req.params.userId,
         {
             password: req.body.password,
             telefono: req.body.telefono,
@@ -101,4 +101,4 @@ export const editProfile = async (req: Request, res: Response) => {
     } catch (error) {
         return res.status(500).json("Internal Server Error");
     }
-  };
+};

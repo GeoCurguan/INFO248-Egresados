@@ -1,5 +1,5 @@
 import { useState } from "react";
-const ProfileForm = () => {
+const ProfileForm = (props) => {
   const [formData, setFormData] = useState({
     password: "",
     telefono: "",
@@ -25,7 +25,7 @@ const ProfileForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await fetch(
-      process.env.NEXT_PUBLIC_URL_BACKEND + "/api/auth/editprofile",
+      process.env.NEXT_PUBLIC_URL_BACKEND + "/api/auth/editprofile/" + props.userId,
       {
         method: "PUT",
         headers: {
@@ -46,7 +46,7 @@ const ProfileForm = () => {
             htmlFor="email"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
-            Contraseña
+            Contraseña{props.userId}
           </label>
           <input
             type="password"

@@ -8,7 +8,7 @@ const router:Router = Router();
 
 router.post('/signup', signup);
 router.post('/signin', signin);
-router.put('/editprofile', editProfile);
+router.put('/editprofile/:userId', editProfile);
 
 //Rutas protegidas
 router.get('/profile', AuthToken.TokenValidation,profile);

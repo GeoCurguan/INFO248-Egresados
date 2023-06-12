@@ -20,7 +20,7 @@ const Ruta = () => {
             email={user.email}
             role={user.rol}
           />
-          <ProfileForm />
+          <ProfileForm userId={user._id}/>
         </div>
         <button
           className="bg-gray-900 text-white p-2 rounded-lg"
