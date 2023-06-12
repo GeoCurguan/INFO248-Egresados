@@ -6,7 +6,7 @@ instalar dependencias:
 npm install && npm install ts-node && npm install mocha && npm install @types/mocha && npm install express morgan cors && npm install chai && npm install --save-dev @types/chai
 ```
 ```
-npm install mocha chai supertest --save-dev
+npm i --save-dev @types/supertest
 
 ```
 comando de testeo (/API):
