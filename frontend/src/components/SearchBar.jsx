@@ -2,7 +2,7 @@ import React from "react";
 
 const SearchBar = () => {
   return (
-    <div className="flex flex-col items-end">
+    <>
       <form className="w-full max-w-md text-gray-600 dark:text-gray-400">
         <label
           htmlFor="default-search"
@@ -43,7 +43,7 @@ const SearchBar = () => {
           </button>
         </div>
       </form>
-    </div>
+    </>
   );
 };
 
