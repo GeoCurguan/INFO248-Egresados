@@ -4,7 +4,6 @@ const PostForm = (props) =>{
     const year = today.getFullYear();
     const month = today.getMonth() + 1;
     const day = today.getDate();
-
     const formattedDate = `${day}/${month}/${year}`;
 
     const [formPost, setFormPost] = useState({
@@ -25,7 +24,7 @@ const PostForm = (props) =>{
     const handleSubmit = async (e) => {
         e.preventDefault();
         const res = await fetch(
-        process.env.NEXT_PUBLIC_URL_BACKEND + "/api/auth/posts/" + props.userId,
+        process.env.NEXT_PUBLIC_URL_BACKEND + "/api/posts/" + props.userId,
         {
             method: "POST",
             headers: {
