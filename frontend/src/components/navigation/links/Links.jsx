@@ -22,7 +22,7 @@ const Links = () => {
 
   return (
     <nav>
-      <ul className="md:flex-nowrap flex flex-wrap  justify-center gap-3 py-3 uppercase [&>li:not(last-child)>a]:bg-gray-200 [&>li:not(last-child)>a]:py-1 [&>li:not(last-child)>a]:px-5">
+      <ul className="md:flex-nowrap flex flex-wrap justify-center gap-3 py-3 uppercase [&>li:not(last-child)>a]:bg-gray-200 [&>li:not(:last-child)>a]:py-1 [&>li:not(:last-child)>a]:px-5">
         {navLinks.map((link) => (
           <li key={link.name}>
             <Link href={link.href}>{link.name}</Link>

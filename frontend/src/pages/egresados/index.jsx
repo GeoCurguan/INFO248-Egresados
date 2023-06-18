@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Egresado from "@/components/Egresados/Egresado";
-import FiltroEgresado from "@/components/Egresados/FiltroEgresado";
-import SearchBar from "@/components/Egresados/SearchBar";
+import FiltroEgresado from "@/components/egresados/FiltroEgresado";
+import CardContent from "@/components/CardContent";
+import SearchBar from "@/components/SearchBar";
 
 const fakeData = [
   {
@@ -46,7 +46,9 @@ const Index = () => {
 
   return (
     <div className="w-10/12 mx-auto">
-      <SearchBar />
+      <div className="flex flex-col items-end">
+        <SearchBar />
+      </div>
       <div className="flex md:flex-row flex-col justify-between items-center mt-4 gap-4">
         <FiltroEgresado filtros={filtros} setFiltros={setFiltros} />
         <main
@@ -55,8 +57,9 @@ const Index = () => {
         w-full h-[30rem] bg-gray-200 rounded-md shadow-lg p-4 overflow-auto bar"
         >
           {fakeData.map((egresado) => (
-            <Egresado
+            <CardContent
               key={egresado.id}
+              tipo={"egresado"}
               nombres={egresado.nombres}
               apellidos={egresado.apellidos}
               caracteristicas={egresado.caracteristicas}

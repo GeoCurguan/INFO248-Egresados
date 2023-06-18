@@ -1,6 +1,9 @@
 import { PasswordController} from '../libs/PasswordController';
-import {Schema, model, Document} from 'mongoose';
+import {Schema, model, Document, Types} from 'mongoose';
+import postSchema, {IPost} from './Post';
 import bcrypt from 'bcryptjs';
+
+
 export interface IUser extends Document {
     rut: string;
     email: string;
@@ -20,6 +23,7 @@ export interface IUser extends Document {
     facebook: string | null;
     linkedin: string | null;
 
+    posts: Types.ObjectId[];
     encryptPassword(password: string): Promise<string>;
     validatePassword(password: string): Promise<boolean>;
 }
@@ -115,7 +119,9 @@ const userSchema = new Schema({
         type: String,
         maxlength: 255,
         default: null,
-    }
+    },
+
+    posts: [{type: Types.ObjectId, ref: 'Post'}],
 });
 
 userSchema.methods.encryptPassword = async (password: string): Promise<string> => {

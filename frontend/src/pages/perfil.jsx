@@ -5,6 +5,7 @@ import { useAuthContext } from "../context/MyAuthContext";
 import ProfileSummary from "@/components/profile/ProfileSummary";
 import ProtectedLogged from "@/components/protected/ProtectedLogged";
 import ProfileForm from "@/components/profile/ProfileForm";
+import PostForm from "@/components/profile/PostForm";
 
 const Ruta = () => {
   const { user, handleLogout } = useAuthContext();
@@ -21,6 +22,7 @@ const Ruta = () => {
             role={user.rol}
           />
           <ProfileForm userId={user._id}/>
+          <PostForm name={user.nombres + " " + user.apellidos} userId={user._id}/>
         </div>
         <button
           className="bg-gray-900 text-white p-2 rounded-lg"

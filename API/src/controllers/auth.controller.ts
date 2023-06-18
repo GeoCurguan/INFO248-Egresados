@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import User, {IUser} from '../models/User';
+// import Post, {IPost} from '../models/Post';
 import jwt from 'jsonwebtoken';
 
 export const signup = async (req: Request, res: Response) =>{
