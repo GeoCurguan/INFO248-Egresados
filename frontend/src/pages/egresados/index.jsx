@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Egresado from "@/components/Egresados/Egresado";
-import FiltroEgresado from "@/components/Egresados/FiltroEgresado";
-import SearchBar from "@/components/Egresados/SearchBar";
+import Egresado from "@/components/egresados/Egresado";
+import FiltroEgresado from "@/components/egresados/FiltroEgresado";
+import SearchBar from "@/components/egresados/SearchBar";
 
 const fakeData = [
   {
