@@ -10,13 +10,10 @@
   --bg-main: #fefefe;
 }
 
+/* Fonts globales */
+
 body {
   background-color: var(--bg-main);
-}
-
-.profileDataContainer {
-  display: flex;
-  flex-direction: row;
 }
 
 /* Remove outline on inputs, selects, etc */
@@ -43,4 +40,10 @@ button:focus {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #757575;
+}
+
+/* ./perfil.jsx */
+.profileDataContainer {
+  display: flex;
+  flex-direction: row;
 }
