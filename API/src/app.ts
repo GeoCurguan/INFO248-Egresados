@@ -1,6 +1,7 @@
 import express, { Application } from "express";
 import authRoutes from "./routes/auth";
 import postsRoutes from "./routes/posts";
+import usersRoutes from "./routes/users";
 import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -25,6 +26,7 @@ app.use(express.json());
 //Routes
 
 app.use("/api/auth", authRoutes);
+app.use("/api/users", usersRoutes);
 app.use("/api/posts", postsRoutes);
 
 export default app;

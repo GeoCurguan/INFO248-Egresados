@@ -12,7 +12,8 @@ const Index = () => {
   });
 
   useEffect(() => {
-    fetch("api/egresados")
+    // NEXT_PUBLIC_URL_BACKEND
+    fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/users`)
       .then((res) => res.json())
       .then((data) => setEgresados(data));
   }, []);
@@ -35,12 +36,9 @@ const Index = () => {
         >
           {egresados.map((egresado) => (
             <CardContent
-              key={egresado.id}
+              key={egresado._id}
               tipo={"egresado"}
-              nombres={egresado.nombres}
-              apellidos={egresado.apellidos}
-              caracteristicas={egresado.caracteristicas}
-              dominios={egresado.dominios}
+              egresado={egresado}
             />
           ))}
         </main>

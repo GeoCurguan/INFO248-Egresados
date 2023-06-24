@@ -1,4 +1,6 @@
+// Import React
 import { useState } from "react";
+// Import Components
 import Modal from "@/components/empleos/modal/Modal";
 import { useAuthContext } from "@/context/MyAuthContext";
 
