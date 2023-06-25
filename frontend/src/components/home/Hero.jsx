@@ -1,9 +1,14 @@
+// Import Nextjs
 import Link from "next/link";
+import Image from "next/image";
 
 export const HeroIcon = ({ icon, link }) => {
   return (
-    <Link href={link}>
-      <img src={icon} alt="icon" className="w-12 h-12" />
+    <Link
+      href={link}
+      className="hover:bg-[--primary] hover:rounded-md transition-all "
+    >
+      <Image src={icon} width={48} height={48} alt="icon" />
     </Link>
   );
 };
@@ -28,12 +33,13 @@ const Hero = () => {
     <div
       className="flex flex-col w-full justify-evenly
         h-[450px] md:h-[400px] lg:h-[500px] xl:h-[600px] 2xl:h-[700px]
-        bg-[url('/placeholders/placeholder_hero.svg')] bg-cover bg-center bg-no-repeat"
+        bg-[url('/images/home/home-hero.jpg')] bg-cover bg-center bg-no-repeat relative"
     >
-      <h1 className="text-3xl font-bold text-center">
+      <h1 className="text-3xl font-bold text-center z-10">
         Bienvenido a la Red de Egresados
       </h1>
-      <section className="sm:flex-row flex flex-col bg-gray-200">
+
+      <section className="sm:flex-row flex flex-col bg-gray-200 z-10 backdrop-filter backdrop-blur-sm bg-opacity-75">
         {/* 2/3 on desktop*/}
         <article className="sm:w-2/3 md:pr-8 md:pl-8 w-full px-8 py-4 ">
           <p>
@@ -44,7 +50,7 @@ const Hero = () => {
           </p>
         </article>
         {/* 1/3 on desktop */}
-        <aside className="sm:w-1/3 flex flex-col w-full px-8 py-4 ">
+        <aside className="sm:w-1/3 flex flex-col w-full px-8 py-4 z-10">
           <div>
             <p>
               <b className="text-[--primary]">Redes Sociales</b>
@@ -59,6 +65,8 @@ const Hero = () => {
           </div>
         </aside>
       </section>
+      {/* bg white opacity*/}
+      <div className="absolute inset-0 bg-white opacity-10" />
     </div>
   );
 };

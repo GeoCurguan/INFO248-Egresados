@@ -6,11 +6,14 @@
 :root {
   --primary: #ff7b5d;
   --nav-contact: #373737;
+  --hero-icon: #b43e37;
+  --bg-main: #fefefe;
 }
 
-.profileDataContainer {
-  display: flex;
-  flex-direction: row;
+/* Fonts globales */
+
+body {
+  background-color: var(--bg-main);
 }
 
 /* Remove outline on inputs, selects, etc */
@@ -37,4 +40,10 @@ button:focus {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #757575;
+}
+
+/* ./perfil.jsx */
+.profileDataContainer {
+  display: flex;
+  flex-direction: row;
 }
