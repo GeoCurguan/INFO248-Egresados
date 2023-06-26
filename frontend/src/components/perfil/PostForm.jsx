@@ -67,7 +67,7 @@ const PostForm = (props) =>{
                     value={formPost.body}
                     onChange={handleChange}
                     className="bg-gray-50 h-8 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Titulo para mi Publicación"
+                    placeholder="Cuerpo de la Publicación"
                     required
                 />
             </div>

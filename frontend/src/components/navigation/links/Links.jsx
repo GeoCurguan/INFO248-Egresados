@@ -6,7 +6,7 @@ const navLinks = [
   { name: "Beneficios", href: "/beneficios/" },
   { name: "Empleos", href: "/empleos/" },
   { name: "Egresados", href: "/egresados/" },
-  { name: "Personal", href: "/personal/" },
+  { name: "Personal", href: "/perfil/" },
 ];
 export const ButtonLogin = () => {
   return <button>{/* Icon 1 if !login */}login</button>;

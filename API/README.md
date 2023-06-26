@@ -1,4 +1,4 @@
-# Cómo Testear la API
+# Cómo Testear la API (ThunderClient)
 
 ## SIGNIN
 

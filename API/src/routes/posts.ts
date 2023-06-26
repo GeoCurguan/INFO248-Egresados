@@ -4,6 +4,6 @@ import { AuthToken} from '../libs/AuthToken';
 
 const router:Router = Router();
 
-router.post('/:userId', createPost);
+router.post('/:userId', AuthToken.TokenValidation, createPost);
 
 export default router;

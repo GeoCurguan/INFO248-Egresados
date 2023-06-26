@@ -6,10 +6,7 @@ import Empleo from "./empleos/Empleo";
 export default function CardContent({
   tipo,
   // Egresado
-  nombres,
-  apellidos,
-  caracteristicas,
-  dominios,
+  egresado,
   // Empleo
   nombreEmpresa,
   resumenTrabajo,
@@ -17,14 +14,7 @@ export default function CardContent({
 }) {
   switch (tipo) {
     case "egresado":
-      return (
-        <Egresado
-          nombres={nombres}
-          apellidos={apellidos}
-          caracteristicas={caracteristicas}
-          dominios={dominios}
-        />
-      );
+      return <Egresado egresado={egresado} />;
     case "empleo":
       return (
         <Empleo
