@@ -17,3 +17,6 @@ npx mocha --require ts-node/register ./__test__/user.test.ts
 ```
 npx mocha --require ts-node/register ./__test__/auth.controller.test.ts
 ```
+```
+npx mocha --require ts-node/register ./__test__/post.controller.test.ts
+```
