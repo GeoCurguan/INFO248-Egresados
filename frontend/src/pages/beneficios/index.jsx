@@ -29,7 +29,7 @@ export default function Home() {
         cursor-pointer transition-all hover:bg-gray-300 "
         >
           <Image
-            src="/placeholders/home-hero.jpg"
+            src="/images/home/home-hero.jpg"
             alt="Image name"
             width={200}
             height={50}

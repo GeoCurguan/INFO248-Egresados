@@ -1,38 +1,71 @@
+// Import Nextjs
 import { useRouter } from "next/router";
 import Head from "next/head";
 
-// https://nextjs.org/docs/routing/dynamic-routes
+// Import React
+import { useState, useEffect } from "react";
 
-// URL TO FETCH: https://jsonplaceholder.typicode.com/posts
+export const PostHero = ({ post, id, loading }) => {
+  return (
+    <div
+      className={`flex flex-col w-full justify-center items-center
+        h-[450px] md:h-[400px] lg:h-[500px] xl:h-[600px] 2xl:h-[700px] gap-4
+         bg-cover bg-center bg-no-repeat relative`}
+      style={{
+        backgroundImage: loading
+          ? `url(/placeholders/placeholder_hero.svg)`
+          : `url(https://picsum.photos/id/${id}/800/600)`,
+      }}
+    >
+      <h1 className="text-3xl text-white font-bold text-center z-10 drop-shadow-md">
+        {post.title}
+      </h1>
+      {/* general blur */}
+      <div className="absolute inset-0 backdrop-blur-sm" />
+      {/* gradiente en los ultimos 10 px */}
+      <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[--bg-main] to-transparent" />
+    </div>
+  );
+};
+
 const Post = ({ post }) => {
   const router = useRouter();
   const { id } = router.query;
-
-  /* ¿ Por qué hacemos este paso intermedio de pasarlo a una variable? */
-  /* R: Es un tema de renderizado, no podemos usar el {pid} directamente en el title */
-  /* https://github.com/vercel/next.js/discussions/38256 */
   const title_post = `Posts - ${id}`;
+
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const img = new Image();
+    img.src = `https://picsum.photos/id/${id}/800/600`;
+    img.onload = () => {
+      setLoading(false);
+    };
+  }, []);
 
   return (
     <>
       <Head>
         <title>{title_post}</title>
       </Head>
-      <div>
-        <h1>Post id: {id}</h1>
-        <h2>{post.title}</h2>
-        <p>{post.body}</p>
-      </div>
+      {loading ? (
+        <PostHero post={post} loading={loading} />
+      ) : (
+        <PostHero post={post} id={id} loading={loading} />
+      )}
 
-      <p style={{ marginTop: "1rem" }}>
-        El post fue sacado desde:{" "}
-        <a
-          className="link"
-          href={`https://jsonplaceholder.typicode.com/posts/${id}`}
-        >
-          https://jsonplaceholder.typicode.com/posts/{id}
-        </a>
-      </p>
+      <div className="container mx-auto px-4 py-8">
+        <h2 className="text-2xl font-bold">{post.title}</h2>
+        <p>{post.body}</p>
+        <p style={{ marginTop: "1rem" }}>
+          El post fue sacado desde:{" "}
+          <a
+            className="link"
+            href={`https://jsonplaceholder.typicode.com/posts/${id}`}
+          >
+            https://jsonplaceholder.typicode.com/posts/{id}
+          </a>
+        </p>
+      </div>
     </>
   );
 };
