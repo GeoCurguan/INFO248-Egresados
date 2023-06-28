@@ -3,42 +3,20 @@ import FiltroEgresado from "@/components/egresados/FiltroEgresado";
 import CardContent from "@/components/CardContent";
 import SearchBar from "@/components/SearchBar";
 
-const fakeData = [
-  {
-    id: 1,
-    nombres: "Juan",
-    apellidos: "Perez",
-    caracteristicas: "lorem",
-    dominios: "ipsum",
-  },
-  {
-    id: 2,
-    nombres: "Juan",
-    apellidos: "Perez",
-    caracteristicas: "lorem",
-    dominios: "ipsum",
-  },
-  {
-    id: 3,
-    nombres: "Ricardo",
-    apellidos: "Fuentes",
-    caracteristicas: "lorem",
-    dominios: "ipsum",
-  },
-  {
-    id: 4,
-    nombres: "Juan",
-    apellidos: "Perez",
-    caracteristicas: "lorem",
-    dominios: "ipsum",
-  },
-];
-
 const Index = () => {
+  const [egresados, setEgresados] = useState([]);
+
   const [filtros, setFiltros] = useState({
     year: "2023",
     carrera: "Ingeniería en Completos",
   });
+
+  useEffect(() => {
+    // NEXT_PUBLIC_URL_BACKEND
+    fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/users`)
+      .then((res) => res.json())
+      .then((data) => setEgresados(data));
+  }, []);
 
   useEffect(() => {
     console.log(filtros);
@@ -56,14 +34,11 @@ const Index = () => {
         md:w-3/4
         w-full h-[30rem] bg-gray-200 rounded-md shadow-lg p-4 overflow-auto bar"
         >
-          {fakeData.map((egresado) => (
+          {egresados.map((egresado) => (
             <CardContent
-              key={egresado.id}
+              key={egresado._id}
               tipo={"egresado"}
-              nombres={egresado.nombres}
-              apellidos={egresado.apellidos}
-              caracteristicas={egresado.caracteristicas}
-              dominios={egresado.dominios}
+              egresado={egresado}
             />
           ))}
         </main>

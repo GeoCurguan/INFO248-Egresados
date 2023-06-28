@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const ProfileSummary = (props) => {
   const {
     name = "Juan",
@@ -9,14 +11,16 @@ const ProfileSummary = (props) => {
 
   return (
     <div className="flex items justify ml-10">
-      <div className="max-w-xs ">
+      <div className="max-w-xs">
         <div className="bg-white shadow-xl rounded-lg py-3 h-96">
-          <div className="photo-wrapper p-2">
-            <img
-              className="w-32 h-32 rounded-full mx-auto"
-              src="default-avatar.jpg"
-              alt="John Doe"
-            ></img>
+          <div className="p-2">
+            <Image
+              width={128}
+              height={128}
+              className="rounded-full mx-auto"
+              src="/default-avatar.jpg"
+              alt={name + " " + surname}
+            />
           </div>
           <div className="p-2">
             <h3 className="text-center text-xl text-gray-900 font-medium leading-8">

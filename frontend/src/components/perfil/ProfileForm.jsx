@@ -25,7 +25,9 @@ const ProfileForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await fetch(
-      process.env.NEXT_PUBLIC_URL_BACKEND + "/api/auth/editprofile/" + props.userId,
+      process.env.NEXT_PUBLIC_URL_BACKEND +
+        "/api/auth/editprofile/" +
+        props.userId,
       {
         method: "PUT",
         headers: {
@@ -43,14 +45,14 @@ const ProfileForm = (props) => {
       <form className="w-1/3" onSubmit={handleSubmit}>
         <div className="mb-6">
           <label
-            htmlFor="email"
+            htmlFor="password"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Contraseña{props.userId}
           </label>
           <input
             type="password"
-            id="email"
+            id="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
@@ -61,14 +63,14 @@ const ProfileForm = (props) => {
         </div>
         <div className="mb-6">
           <label
-            htmlFor="email"
+            htmlFor="telefono"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Telefono
           </label>
           <input
             type="text"
-            id="email"
+            id="telefono"
             name="telefono"
             value={formData.telefono}
             onChange={handleChange}
@@ -79,14 +81,14 @@ const ProfileForm = (props) => {
         </div>
         <div className="mb-6">
           <label
-            htmlFor="email"
+            htmlFor="descripcion"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Descripción
           </label>
           <input
             type="text"
-            id="text"
+            id="descripcion"
             name="descripcion"
             value={formData.descripcion}
             onChange={handleChange}
@@ -97,14 +99,14 @@ const ProfileForm = (props) => {
         </div>
         <div className="mb-6">
           <label
-            htmlFor="email"
+            htmlFor="foto"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Foto
           </label>
           <input
             type="text"
-            id="email"
+            id="foto"
             name="foto"
             value={formData.foto}
             onChange={handleChange}
@@ -115,14 +117,14 @@ const ProfileForm = (props) => {
         </div>
         <div className="mb-6">
           <label
-            htmlFor="email"
+            htmlFor="pais"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             País
           </label>
           <input
             type="text"
-            id="email"
+            id="pais"
             name="pais"
             value={formData.pais}
             onChange={handleChange}
@@ -133,14 +135,14 @@ const ProfileForm = (props) => {
         </div>
         <div className="mb-6">
           <label
-            htmlFor="email"
+            htmlFor="region"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Región
           </label>
           <input
             type="text"
-            id="email"
+            id="region"
             name="region"
             value={formData.region}
             onChange={handleChange}
@@ -151,14 +153,14 @@ const ProfileForm = (props) => {
         </div>
         <div className="mb-6">
           <label
-            htmlFor="email"
+            htmlFor="comuna"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Comuna
           </label>
           <input
             type="text"
-            id="email"
+            id="comuna"
             name="comuna"
             value={formData.comuna}
             onChange={handleChange}
@@ -169,14 +171,14 @@ const ProfileForm = (props) => {
         </div>
         <div className="mb-6">
           <label
-            htmlFor="email"
+            htmlFor="direccion"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Dirección
           </label>
           <input
             type="text"
-            id="email"
+            id="direccion"
             name="direccion"
             value={formData.direccion}
             onChange={handleChange}
@@ -187,14 +189,14 @@ const ProfileForm = (props) => {
         </div>
         <div className="mb-6">
           <label
-            htmlFor="email"
+            htmlFor="instagram"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Instagram
           </label>
           <input
             type="text"
-            id="email"
+            id="instagram"
             name="instagram"
             value={formData.instagram}
             onChange={handleChange}
@@ -205,14 +207,14 @@ const ProfileForm = (props) => {
         </div>
         <div className="mb-6">
           <label
-            htmlFor="email"
+            htmlFor="twitter"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Twitter
           </label>
           <input
             type="text"
-            id="email"
+            id="twitter"
             name="twitter"
             value={formData.twitter}
             onChange={handleChange}
@@ -223,14 +225,14 @@ const ProfileForm = (props) => {
         </div>
         <div className="mb-6">
           <label
-            htmlFor="email"
+            htmlFor="facebook"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Facebook
           </label>
           <input
             type="text"
-            id="email"
+            id="facebook"
             name="facebook"
             value={formData.facebook}
             onChange={handleChange}
@@ -241,14 +243,14 @@ const ProfileForm = (props) => {
         </div>
         <div className="mb-6">
           <label
-            htmlFor="email"
+            htmlFor="linkedin"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
           >
             Linkedin
           </label>
           <input
             type="text"
-            id="email"
+            id="linkedin"
             name="linkedin"
             value={formData.linkedin}
             onChange={handleChange}

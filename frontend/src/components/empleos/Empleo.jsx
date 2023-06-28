@@ -1,5 +1,4 @@
-import React from "react";
-
+// Import Nextjs
 import Image from "next/image";
 
 const Egresado = ({ nombreEmpresa, resumenTrabajo, tags }) => {

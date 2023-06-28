@@ -55,7 +55,6 @@ export const isusercreated = async (req: Request, res: Response) =>{
 //Recibe el auth-token en el profile
 export const profile = async (req: Request, res: Response) =>{
     const user = await User.findById(req.userId, {password : 0});
-    console.log("NO SE ENCONTRO PERRO")
     if(!user) return res.status(404).json('No User Found');
     res.json(user);
 
@@ -67,12 +66,7 @@ export const logout = (req: Request, res: Response) => {
   };
 
 //Por ahora solo responde con el perfil completo
-//TODO: Edición del perfil, pero el masternani dijo q lo haría
-/*export const editProfile = async (req: Request, res: Response) => {
-    const user = await User.findById(req.userId, {password : 0});
 
-};
-*/
 export const editProfile = async (req: Request, res: Response) => {
     try {
     const updatedUser: IUser | null = await User.findByIdAndUpdate(
