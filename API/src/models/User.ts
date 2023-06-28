@@ -23,7 +23,6 @@ export interface IUser extends Document {
     facebook: string | null;
     linkedin: string | null;
 
-    posts: Types.ObjectId[];
     encryptPassword(password: string): Promise<string>;
     validatePassword(password: string): Promise<boolean>;
 }
@@ -121,7 +120,6 @@ const userSchema = new Schema({
         default: null,
     },
 
-    posts: [{type: Types.ObjectId, ref: 'Post'}],
 });
 
 userSchema.methods.encryptPassword = async (password: string): Promise<string> => {

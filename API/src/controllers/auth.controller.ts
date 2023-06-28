@@ -55,7 +55,6 @@ export const isusercreated = async (req: Request, res: Response) =>{
 //Recibe el auth-token en el profile
 export const profile = async (req: Request, res: Response) =>{
     const user = await User.findById(req.userId, {password : 0});
-    console.log("NO SE ENCONTRO PERRO")
     if(!user) return res.status(404).json('No User Found');
     res.json(user);
 

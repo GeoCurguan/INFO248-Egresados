@@ -1,9 +1,10 @@
 import {Router} from 'express';
-import {createPost} from '../controllers/posts.controller';
+import {createPost, deletePost, getAllPosts} from '../controllers/posts.controller';
 import { AuthToken} from '../libs/AuthToken';
 
 const router:Router = Router();
 
-router.post('/:userId', AuthToken.TokenValidation, createPost);
-
+router.post('/createPost/:userId', AuthToken.TokenValidation, createPost);
+router.get('/getAllPosts', getAllPosts);
+router.delete('/deletePost/:postId', AuthToken.TokenValidation, deletePost);
 export default router;
