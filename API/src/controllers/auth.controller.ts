@@ -66,12 +66,7 @@ export const logout = (req: Request, res: Response) => {
   };
 
 //Por ahora solo responde con el perfil completo
-//TODO: Edición del perfil, pero el masternani dijo q lo haría
-/*export const editProfile = async (req: Request, res: Response) => {
-    const user = await User.findById(req.userId, {password : 0});
 
-};
-*/
 export const editProfile = async (req: Request, res: Response) => {
     try {
     const updatedUser: IUser | null = await User.findByIdAndUpdate(

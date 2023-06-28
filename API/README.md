@@ -1,5 +1,18 @@
 # Cómo Testear la API (ThunderClient)
 
+
+## Dockerizar
+
+construir imagen:
+
+docker build -t api .
+
+Levantar imagen:
+
+docker run -p 4000:4000 api
+
+
+
 ## SIGNIN
 
 ### Request URL
@@ -18,6 +31,8 @@ http://localhost:4000/api/auth/signin
   "password": "test"
 }
 ```
+
+
 
 
 
