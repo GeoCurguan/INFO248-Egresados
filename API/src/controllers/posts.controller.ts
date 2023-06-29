@@ -74,3 +74,35 @@ export const deletePost = async (req: Request, res:Response) =>{
         });
     }
 };
+
+
+export const getPostById = async (req: Request, res: Response) => {
+  try {
+    const postId = req.params.postId;
+    const post = await Post.findById(postId)
+
+    res.status(200).json(post)
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error al obtener el post'
+    });
+  }
+};
+
+export const getPostByType = async (req: Request, res: Response) => {
+  console.log("XD")
+  try {
+    const typePost = req.params.postType;
+    const posts: IPost[] = await Post.find( {type: typePost} );
+    res.status(200).json({
+      success: true,
+      posts: posts
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error al obtener los posts'
+    });
+  }
+};
