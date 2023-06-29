@@ -77,3 +77,23 @@ http://localhost:4000/api/posts/deletePost/649cad9df8bc28bb51d0c357
 http://localhost:4000/api/posts/getAllPosts
 ```
 
+
+**(GET) Get POST BY ID**
+
+```bash
+http://localhost:4000/api/posts/getPostById/{id_post}
+ej:
+http://localhost:4000/api/posts/getPostById/649cac1640be7acefb
+```
+
+
+
+
+**(GET) get post by type**
+
+```
+http://localhost:4000/api/posts/getPostByType/{tipo_de_post}
+
+EJ:
+http://localhost:4000/api/posts/getPostByType/Laboral
+```
