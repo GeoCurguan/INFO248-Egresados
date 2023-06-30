@@ -3,9 +3,9 @@ import Image from "next/image";
 import React from "react";
 
 const CardPost = ({ post }) => {
-  const { id, title, body } = post;
+  const { _id, title, body } = post;
   return (
-    <Link href={`/intereses/${id}`} key={id}>
+    <Link href={`/intereses/${_id}`} key={_id}>
       <article className="flex sm:max-h-80 sm:flex-row rounded-md shadow-md flex-col gap-6 mt-10 mx-10 px-5 py-10 bg-gray-200 cursor-pointer transition-all hover:bg-gray-300 ">
         <Image
           src="/images/home/home-hero.jpg"

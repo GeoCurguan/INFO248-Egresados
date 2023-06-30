@@ -9,6 +9,7 @@ const PostForm = (props) => {
   const [formPost, setFormPost] = useState({
     author: props.name,
     title: "",
+    image: null,
     date: formattedDate,
     body: "",
     type: "",
@@ -24,12 +25,15 @@ const PostForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await fetch(
-      process.env.NEXT_PUBLIC_URL_BACKEND + "/api/posts/" + props.userId,
+      process.env.NEXT_PUBLIC_URL_BACKEND +
+        "/api/posts/createPost/" +
+        props.userId,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
+          "auth-token": localStorage.getItem("token"),
         },
         body: JSON.stringify(formPost),
         credentials: "include",
@@ -50,6 +54,20 @@ const PostForm = (props) => {
             onChange={handleChange}
             className="bg-gray-50 h-8 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Titulo para mi Publicación"
+            required
+          />
+        </div>
+        <div className="mb-6">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+            Titulo
+          </label>
+          <input
+            type="text"
+            name="image"
+            value={formPost.image}
+            onChange={handleChange}
+            className="bg-gray-50 h-8 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="url img"
             required
           />
         </div>

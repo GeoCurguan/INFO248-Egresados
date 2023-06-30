@@ -33,25 +33,25 @@ const Post = ({ post }) => {
   const { id } = router.query;
   const title_post = `Posts - ${id}`;
 
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const img = new Image();
-    img.src = `https://picsum.photos/id/${id}/800/600`;
-    img.onload = () => {
-      setLoading(false);
-    };
-  }, []);
+  // const [loading, setLoading] = useState(true);
+  // useEffect(() => {
+  //   const img = new Image();
+  //   img.src = `https://picsum.photos/id/${id}/800/600`;
+  //   img.onload = () => {
+  //     setLoading(false);
+  //   };
+  // }, []);
 
   return (
     <>
       <Head>
         <title>{title_post}</title>
       </Head>
-      {loading ? (
+      {/* {loading ? (
         <PostHero post={post} loading={loading} />
       ) : (
         <PostHero post={post} id={id} loading={loading} />
-      )}
+      )} */}
 
       <div className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold">{post.title}</h2>
@@ -60,9 +60,9 @@ const Post = ({ post }) => {
           El post fue sacado desde:{" "}
           <a
             className="link"
-            href={`https://jsonplaceholder.typicode.com/posts/${id}`}
+            // href={`https://jsonplaceholder.typicode.com/posts/${id}`}
           >
-            https://jsonplaceholder.typicode.com/posts/{id}
+            {/* https://jsonplaceholder.typicode.com/posts/{id} */}
           </a>
         </p>
       </div>
@@ -77,7 +77,8 @@ export default Post;
 // la cual es estática, por lo que no cambia
 export async function getStaticProps({ params }) {
   const res = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${params.id}`
+    // `https://jsonplaceholder.typicode.com/posts/${params.id}`
+    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostById/${params.id}`
   );
   const post = await res.json();
 
@@ -89,12 +90,14 @@ export async function getStaticProps({ params }) {
 // de los posts, para que NextJS pueda generar las páginas
 // estáticas de cada post
 export async function getStaticPaths() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-  const posts = await res.json();
-
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostByType/Noticia`
+  );
+  const { posts } = await res.json();
+  console.log(posts);
   // Obtenemos los paths de los posts
   const paths = posts.map((post) => ({
-    params: { id: post.id.toString() },
+    params: { id: post._id.toString() },
   }));
 
   // Retorna los paths, y fallback: false para que
