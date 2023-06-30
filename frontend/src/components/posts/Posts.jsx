@@ -13,7 +13,7 @@ const Posts = ({ posts }) => {
       {posts
         .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         .map((post) => (
-          <CardPost key={post.id} post={post} />
+          <CardPost key={post._id} post={post} />
         ))}
       <Pagination
         currentPage={currentPage}
