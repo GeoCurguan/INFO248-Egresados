@@ -69,22 +69,47 @@ export const logout = (req: Request, res: Response) => {
 
 export const editProfile = async (req: Request, res: Response) => {
     try {
+        const updatedFields: any = {};
+        if(req.body.password){
+            updatedFields.password = req.body.password;
+        }
+        if(req.body.telefono){
+            updatedFields.telefono = req.body.telefono;
+        }
+        if(req.body.descripcion){
+            updatedFields.descripcion = req.body.descripcion;
+        }
+        if(req.body.foto){
+            updatedFields.foto = req.body.foto;
+        }
+        if(req.body.pais){
+            updatedFields.pais = req.body.pais;
+        }
+        if(req.body.region){
+            updatedFields.region = req.body.region;
+        }
+        if(req.body.comuna){
+            updatedFields.comuna = req.body.comuna;
+        }
+        if(req.body.direccion){
+            updatedFields.direccion = req.body.direccion;
+        }
+        if(req.body.instagram){
+            updatedFields.instagram = req.body.instagram;
+        }
+        if(req.body.twitter){
+            updatedFields.twitter = req.body.twitter;
+        }
+        if(req.body.facebook){
+            updatedFields.facebook = req.body.facebook;
+        }
+        if(req.body.linkedin){
+            updatedFields.linkedin = req.body.linkedin;
+        }
+
     const updatedUser: IUser | null = await User.findByIdAndUpdate(
         req.params.userId,
-        {
-            password: req.body.password,
-            telefono: req.body.telefono,
-            descripcion: req.body.descripcion,
-            foto: req.body.foto,
-            pais: req.body.pais,
-            region: req.body.region,
-            comuna: req.body.comuna,
-            direccion: req.body.direccion,
-            instagram: req.body.instagram,
-            twitter: req.body.twitter,
-            facebook: req.body.facebook,
-            linkedin: req.body.linkedin,
-        },
+        updatedFields,
         { new: true }
     );
 
