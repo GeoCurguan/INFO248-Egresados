@@ -1,6 +1,5 @@
 # Cómo Testear la API (ThunderClient)
 
-
 ## Dockerizar
 
 construir imagen:
@@ -10,8 +9,6 @@ docker build -t api .
 Levantar imagen:
 
 docker run -p 4000:4000 api
-
-
 
 ## SIGNIN
 
@@ -32,10 +29,6 @@ http://localhost:4000/api/auth/signin
 }
 ```
 
-
-
-
-
 **(POST) Create Post: Requiere autenticación con jwt**
 
 ```bash
@@ -50,18 +43,15 @@ http://localhost:4000/api/posts/createPost/647c0e40a83a48860956c52d
 ```json
 {
   "author": "Diego",
-  "title" : "Busco informatico experto en flutter",
-  "image" : "null",
-  "date" : "28/06/2023",
-  "body" : "Busco informatico que haga una aplicación mobil que me avise cada vez que mi gata se pare chueca",
-  "type" : "Oferta laboral"
+  "title": "Busco informatico experto en flutter",
+  "image": "null",
+  "date": "28/06/2023",
+  "body": "Busco informatico que haga una aplicación mobil que me avise cada vez que mi gata se pare chueca",
+  "type": "Oferta laboral"
 }
 ```
 
-
-
-
-**(DELETE) Delete Post:  Requiere autenticación con jwt**
+**(DELETE) Delete Post: Requiere autenticación con jwt**
 
 ```bash
 http://localhost:4000/api/posts/deletePost/{id_POST}
@@ -70,13 +60,11 @@ ej:
 http://localhost:4000/api/posts/deletePost/649cad9df8bc28bb51d0c357
 ```
 
-
 **(GET) Get All POSTS**
 
 ```bash
 http://localhost:4000/api/posts/getAllPosts
 ```
-
 
 **(GET) Get POST BY ID**
 
@@ -85,9 +73,6 @@ http://localhost:4000/api/posts/getPostById/{id_post}
 ej:
 http://localhost:4000/api/posts/getPostById/649cac1640be7acefb
 ```
-
-
-
 
 **(GET) get post by type**
 

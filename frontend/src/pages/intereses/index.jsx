@@ -18,8 +18,14 @@ export default function Home() {
 
   useEffect(() => {
     const getIntereses = async () => {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-      const newIntereses = await res.json();
+      // const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+      const res = await fetch(
+        // http://localhost:4000/api/posts/getPostByType/intereses
+        `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostByType/Noticia`
+      );
+      const { posts } = await res.json();
+      const newIntereses = posts;
+
       console.log(newIntereses);
       setIntereses(newIntereses);
     };
