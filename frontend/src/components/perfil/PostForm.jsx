@@ -9,7 +9,7 @@ const PostForm = (props) => {
   const [formPost, setFormPost] = useState({
     author: props.name,
     title: "",
-    image: null,
+    image: "Imagen",
     date: formattedDate,
     body: "",
     type: "",

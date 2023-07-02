@@ -10,6 +10,7 @@ export interface IPost extends Document {
   type: string;
 }
 
+
 const postSchema = new Schema({
   id_user: {
     type: String,
@@ -44,3 +45,20 @@ const postSchema = new Schema({
 //Acá se puede extender a otras clases, ya sea Noticias, Ofertas Laborales, etc
 
 export default model<IPost>("Post", postSchema);
+
+export interface INewsPost extends IPost {
+  source: string;
+}
+
+export interface IJobOfferPost extends IPost {
+  sueldo: number;
+  empresa: string;
+}
+
+export interface IBenefitsPost extends IPost {
+  category: string;
+}
+
+export const NewsPostModel = model<INewsPost>("NewsPost", postSchema);
+export const JobOfferPostModel = model<IJobOfferPost>("JobOfferPost", postSchema);
+export const BenefitsPostModel = model<IBenefitsPost>("BenefitsPost", postSchema);
