@@ -71,7 +71,6 @@ export const createPost = async (req: Request, res: Response) => {
         post: newPostData
     });
     }catch(error){
-      console.log(error);
         res.status(500).json({
             success: false,
             message: 'Ocurrió un error al crear el post',

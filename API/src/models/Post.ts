@@ -50,7 +50,7 @@ export interface INewsPost extends IPost {
   source: string;
 }
 
-//Si el required de source esta en true, no dejará publicar (¿porque sera?)
+//Si el required de source esta en true, no dejará publicar (¿porque sera?). Asi para cada tipo de post
 const newsPostSchema = postSchema.add({
   source: {
     type: String,
@@ -66,11 +66,11 @@ export interface IJobOfferPost extends IPost {
 const jobOfferPostSchema = postSchema.add({
   sueldo: {
     type: String,
-    required: true,
+    required: false,
   },
   empresa: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 
