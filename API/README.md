@@ -58,6 +58,15 @@ http://localhost:4000/api/posts/deletePost/{id_POST}
 
 ej:
 http://localhost:4000/api/posts/deletePost/649cad9df8bc28bb51d0c357
+
+
+
+
+El body debe llevar el tipo de post:
+body:
+{
+  "type" : "noticia"
+}
 ```
 
 **(GET) Get All POSTS**
@@ -72,6 +81,16 @@ http://localhost:4000/api/posts/getAllPosts
 http://localhost:4000/api/posts/getPostById/{id_post}
 ej:
 http://localhost:4000/api/posts/getPostById/649cac1640be7acefb
+
+
+
+En el body se debe enviar el tipo de publicación
+
+
+body:
+{
+  "type" : "beneficio"
+}
 ```
 
 **(GET) get post by type**
@@ -80,5 +99,13 @@ http://localhost:4000/api/posts/getPostById/649cac1640be7acefb
 http://localhost:4000/api/posts/getPostByType/{tipo_de_post}
 
 EJ:
-http://localhost:4000/api/posts/getPostByType/Laboral
+http://localhost:4000/api/posts/getPostByType/oferta_laboral
+
+tipos: 
+
+oferta_laboral
+noticia
+beneficio
+
+
 ```

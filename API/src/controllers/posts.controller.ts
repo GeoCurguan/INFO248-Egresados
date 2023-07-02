@@ -1,9 +1,17 @@
 import { Request, Response } from "express";
-import Post, {IPost} from '../models/Post';
+import Post, { IPost} from '../models/Post';
+//import Post, {INewsPost, IPost} from '../models/Post';
+import NewsPost, {INewsPost, NewsPostModel} from "../models/newsPost";
 import User, {IUser} from '../models/User';
-import { JobOfferPostModel, NewsPostModel, BenefitsPostModel } from "../models/Post"; // Importar los modelos específicos
-
-
+// import { JobOfferPostModel, NewsPostModel, BenefitsPostModel } from "../models/Post"; // Importar los modelos específicos
+import BenefitPosts, { BenefitsPostModel, IBenefitsPost } from "../models/BenefitPosts";
+import JobOfferPosts ,{IJobOfferPost, JobOfferPostModel}from "../models/JobOfferPosts";
+/**
+ * Crea un post de acuerdo a el tipo de publicación, dsp la devuelve si la puede hacer.
+ * @param req {body con los parametros de entrada indicados en el readme}
+ * @param res
+ * @returns Devuelve si la publicacion fue creada o no, tambien devuelve la publicación como json
+ */
 export const createPost = async (req: Request, res: Response) => {
     try{
         const user = await User.findById(req.params.userId);
@@ -20,8 +28,8 @@ export const createPost = async (req: Request, res: Response) => {
         date: req.body.date,
         body: req.body.body,
         type: req.body.type,
-        sueldo: req.body.sueldo,
-        empresa: req.body.empresa,
+        salary: req.body.sueldo,
+        company: req.body.empresa,
       };
       newPostData = new JobOfferPostModel(jobOfferData);
     } else if (req.body.type === "noticia") {
@@ -78,13 +86,20 @@ export const createPost = async (req: Request, res: Response) => {
     }
 };
 
-
+/**
+ * Consigue los post de todas las tablas en la db
+ * @param req 
+ * @param res 
+ */
 export const getAllPosts = async (req: Request, res: Response) => {
     try {
       const posts: IPost[] = await Post.find();
+      const news: INewsPost[] = await NewsPost.find();
+      const benefits: IBenefitsPost[] = await BenefitPosts.find();
+      const jobPost: IJobOfferPost[] = await JobOfferPosts.find();
       res.status(200).json({
         success: true,
-        posts: posts
+        posts: posts,news,benefits,jobPost
       });
     } catch (error) {
       res.status(500).json({
@@ -97,20 +112,73 @@ export const getAllPosts = async (req: Request, res: Response) => {
 
 export const deletePost = async (req: Request, res:Response) =>{
     try {
-        const postId = req.params.postId;
-        const deletedPost: IPost | null = await Post.findByIdAndDelete(postId);
 
-        if (deletedPost) {
-          res.status(200).json({
-            success: true,
-            message: 'Post eliminado exitosamente',
-          });
+        const typePost = req.body.type; 
+        const postId = req.params.postId;
+        const deletedPost = "";
+
+        
+        if (req.body.type === "oferta_laboral") {
+
+          const deletedPost: IJobOfferPost | null = await JobOfferPosts.findByIdAndDelete(postId);
+          if (deletedPost) {
+            res.status(200).json({
+              success: true,
+              message: 'Post eliminado exitosamente',
+            });
+          }
+          else{
+            res.status(404).json({
+              success: false,
+              message: 'Post no encontrado',
+            });
+          }  
+        } else if (req.body.type === "noticia") {
+
+          const deletedPost: INewsPost | null = await NewsPost.findByIdAndDelete(postId);
+          if (deletedPost) {
+            res.status(200).json({
+              success: true,
+              message: 'Post eliminado exitosamente',
+            });
+          }else{
+            res.status(404).json({
+              success: false,
+              message: 'Post no encontrado',
+            });
+          } 
+        } else if (req.body.type === "beneficio") {
+
+          const deletedPost: IBenefitsPost | null = await BenefitPosts.findByIdAndDelete(postId);
+          if (deletedPost) {
+            res.status(200).json({
+              success: true,
+              message: 'Post eliminado exitosamente',
+            });
+          }else{
+            res.status(404).json({
+              success: false,
+              message: 'Post no encontrado',
+            });
+          } 
         } else {
-          res.status(404).json({
-            success: false,
-            message: 'Post no encontrado',
-          });
+
+          const deletedPost: IPost | null = await Post.findByIdAndDelete(postId);
+          if (deletedPost) {
+            res.status(200).json({
+              success: true,
+              message: 'Post eliminado exitosamente',
+            });
+          } 
+          else{
+            res.status(404).json({
+              success: false,
+              message: 'Post no encontrado',
+            });
+          } 
         }
+
+
       } catch (error) {
         res.status(500).json({
           success: false,
@@ -122,10 +190,59 @@ export const deletePost = async (req: Request, res:Response) =>{
 
 export const getPostById = async (req: Request, res: Response) => {
   try {
-    const postId = req.params.postId;
-    const post = await Post.findById(postId)
 
-    res.status(200).json(post)
+    const typePost = req.body.type;
+    const postId = req.params.postId;
+
+    if (req.body.type === "oferta_laboral") {
+
+      const post = await JobOfferPosts.findById(postId);
+      if(!post){
+        res.status(404).json({
+          success: false,
+          message: 'Post no encontrado'
+        })
+      }else{
+        res.status(200).json(post);
+      }
+      
+    } else if (req.body.type === "noticia") {
+
+      const post = await NewsPost.findById(postId);
+      if(!post){
+        res.status(404).json({
+          success: false,
+          message: 'Post no encontrado'
+        })
+      }else{
+        res.status(200).json(post);
+      }
+      
+    } else if (req.body.type === "beneficio") {
+
+      const post = await BenefitPosts.findById(postId);
+      if(!post){
+        res.status(404).json({
+          success: false,
+          message: 'Post no encontrado'
+        })
+      }else{
+        res.status(200).json(post);
+      }
+      
+    } else {
+
+      const post = await Post.findById(postId);
+      if(!post){
+        res.status(404).json({
+          success: false,
+          message: 'Post no encontrado'
+        })
+      }else{
+        res.status(200).json(post);
+      }
+    }
+
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -135,14 +252,43 @@ export const getPostById = async (req: Request, res: Response) => {
 };
 
 export const getPostByType = async (req: Request, res: Response) => {
-  console.log("XD")
   try {
+
     const typePost = req.params.postType;
-    const posts: IPost[] = await Post.find( {type: typePost} );
-    res.status(200).json({
-      success: true,
-      posts: posts
-    });
+    if (typePost== "oferta_laboral"){
+      
+      const posts: IJobOfferPost[] = await JobOfferPosts.find();
+      res.status(200).json({
+        success: true,
+        posts: posts
+      });
+
+    }
+    else if(typePost== "noticia"){
+      const posts: INewsPost[] = await NewsPost.find();
+      res.status(200).json({
+        success: true,
+        posts: posts
+      });
+
+    }
+    else if (typePost== "beneficio"){
+      const posts: IBenefitsPost[] = await BenefitPosts.find();
+
+      res.status(200).json({
+        success: true,
+        posts: posts
+      });
+    }else{
+
+      const posts: IPost[] = await Post.find();
+      res.status(200).json({
+        success: true,
+        posts: posts
+      });
+
+    }
+    
   } catch (error) {
     res.status(500).json({
       success: false,
