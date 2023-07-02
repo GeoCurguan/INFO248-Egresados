@@ -8,8 +8,6 @@ export const createPost = async (req: Request, res: Response) => {
     try{
         const user = await User.findById(req.params.userId);
         if(!user) return res.status(404).json('Debes estar logueado con un usuario valido para crear un POST');
-
-
         let newPostData: IPost;
 
     // Verificar el tipo de publicación y crear la instancia correspondiente
@@ -73,6 +71,7 @@ export const createPost = async (req: Request, res: Response) => {
         post: newPostData
     });
     }catch(error){
+      console.log(error);
         res.status(500).json({
             success: false,
             message: 'Ocurrió un error al crear el post',

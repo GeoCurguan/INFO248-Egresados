@@ -50,15 +50,34 @@ export interface INewsPost extends IPost {
   source: string;
 }
 
+//Si el required de source esta en true, no dejará publicar (¿porque sera?)
+const newsPostSchema = postSchema.add({
+  source: {
+    type: String,
+    required: false,
+  },
+});
+
 export interface IJobOfferPost extends IPost {
-  sueldo: number;
+  sueldo: string;
   empresa: string;
 }
+
+const jobOfferPostSchema = postSchema.add({
+  sueldo: {
+    type: String,
+    required: true,
+  },
+  empresa: {
+    type: String,
+    required: true,
+  },
+});
 
 export interface IBenefitsPost extends IPost {
   category: string;
 }
 
-export const NewsPostModel = model<INewsPost>("NewsPost", postSchema);
-export const JobOfferPostModel = model<IJobOfferPost>("JobOfferPost", postSchema);
+export const NewsPostModel = model<INewsPost>("NewsPost", newsPostSchema);
+export const JobOfferPostModel = model<IJobOfferPost>("JobOfferPost", jobOfferPostSchema);
 export const BenefitsPostModel = model<IBenefitsPost>("BenefitsPost", postSchema);
