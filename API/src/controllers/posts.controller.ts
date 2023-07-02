@@ -28,8 +28,8 @@ export const createPost = async (req: Request, res: Response) => {
         date: req.body.date,
         body: req.body.body,
         type: req.body.type,
-        salary: req.body.sueldo,
-        company: req.body.empresa,
+        salary: req.body.salary,
+        company: req.body.company,
       };
       newPostData = new JobOfferPostModel(jobOfferData);
     } else if (req.body.type === "noticia") {
