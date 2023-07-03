@@ -21,7 +21,7 @@ export default function Home() {
       // const res = await fetch("https://jsonplaceholder.typicode.com/posts");
       const res = await fetch(
         // http://localhost:4000/api/posts/getPostByType/intereses
-        `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostByType/Noticia`
+        `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostByType/noticia`
       );
       const { posts } = await res.json();
       const newIntereses = posts;

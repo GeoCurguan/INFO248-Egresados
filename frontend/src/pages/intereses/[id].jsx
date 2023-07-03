@@ -75,16 +75,25 @@ const Post = ({ post }) => {
 export default Post;
 
 export async function getStaticProps({ params }) {
+  // Hacemos un fetch a la url con un body {type: "noticia"}
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostById/${params.id}`
+    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostById/${params.id}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ type: "noticia" }),
+    }
   );
+
   const post = await res.json();
   return { props: { post } };
 }
 
 export async function getStaticPaths() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostByType/Noticia`
+    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostByType/noticia`
   );
   const { posts } = await res.json();
   const paths = posts.map((post) => ({
