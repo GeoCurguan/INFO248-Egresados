@@ -12,9 +12,11 @@ export default function Index() {
   });
 
   useEffect(() => {
-    fetch("api/empleos")
+    fetch(
+      `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostByType/oferta_laboral`
+    )
       .then((res) => res.json())
-      .then((data) => setEmpleos(data));
+      .then((data) => setEmpleos(data.posts));
   }, []);
 
   useEffect(() => {
@@ -35,13 +37,7 @@ export default function Index() {
         w-full h-[30rem] bg-gray-200 rounded-md shadow-lg p-4 overflow-auto bar"
         >
           {empleos.map((empleo) => (
-            <CardContent
-              key={empleo.id}
-              tipo={"empleo"}
-              nombreEmpresa={empleo.nombreEmpresa}
-              resumenTrabajo={empleo.resumenTrabajo}
-              tags={empleo.tags}
-            />
+            <CardContent key={empleo._id} tipo={"empleo"} empleo={empleo} />
           ))}
         </main>
       </div>

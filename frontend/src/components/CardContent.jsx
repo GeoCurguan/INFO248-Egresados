@@ -8,21 +8,13 @@ export default function CardContent({
   // Egresado
   egresado,
   // Empleo
-  nombreEmpresa,
-  resumenTrabajo,
-  tags,
+  empleo,
 }) {
   switch (tipo) {
     case "egresado":
       return <Egresado egresado={egresado} />;
     case "empleo":
-      return (
-        <Empleo
-          nombreEmpresa={nombreEmpresa}
-          resumenTrabajo={resumenTrabajo}
-          tags={tags}
-        />
-      );
+      return <Empleo empleo={empleo} />;
 
     default:
       return (
