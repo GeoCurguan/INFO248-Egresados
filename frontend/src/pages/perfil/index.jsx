@@ -9,6 +9,7 @@ import PostForm from "@/components/perfil/PostForm";
 
 const Ruta = () => {
   const { user, handleLogout } = useAuthContext();
+  console.log("user from perfil/index.jsx: ", user);
 
   return (
     <ProtectedLogged>

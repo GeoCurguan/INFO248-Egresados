@@ -2,11 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 
-const CardPost = ({ post }) => {
+const CardPost = ({ path, post }) => {
   const { _id, title, body, image } = post;
   console.log("img: ", image);
   return (
-    <Link href={`/intereses/${_id}`} key={_id} className="block mt-10 mx-10 ">
+    <Link href={`${path}${_id}`} key={_id} className="block mt-10 mx-10 ">
       <article className="flex sm:max-h-80 sm:flex-row rounded-md shadow-md flex-col gap-6 px-5 py-10 bg-gray-200 cursor-pointer transition-all hover:bg-gray-300 ">
         {image ? (
           <Image

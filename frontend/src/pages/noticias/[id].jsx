@@ -34,7 +34,7 @@ const Post = ({ post }) => {
   const title_post = `Posts - ${id}`;
   const [loading, setLoading] = useState(true);
   // Data to display
-  const { author, body, date, id_user, image, title, type } = post;
+  const { author, body, date, id_user, image, title, type } = post || {};
 
   // Preload image
   useEffect(() => {
@@ -51,11 +51,7 @@ const Post = ({ post }) => {
       <Head>
         <title>{title_post}</title>
       </Head>
-      {loading ? (
-        <PostHero post={post} loading={loading} />
-      ) : (
-        <PostHero post={post} loading={loading} />
-      )}
+      {post && <PostHero post={post} loading={loading} />}
 
       <div className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold">{title}</h2>

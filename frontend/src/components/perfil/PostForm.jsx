@@ -2,7 +2,8 @@
 import { useState } from "react";
 
 // Import utils
-import { checkUrlImg } from "@/utils";
+import { checkUrlImg, isNumeric } from "@/utils";
+import { mostrarError, mostrarExito } from "@/utils/alerts";
 
 const PostForm = (props) => {
   // month/day/year
@@ -40,9 +41,15 @@ const PostForm = (props) => {
 
     // Validación de URL de imagen
     if (!checkUrlImg(formPost.image)) {
-      alert(
+      mostrarError(
         "La URL de la imagen no es válida, procure utilizar https://, .png, .jpg o .jpeg"
       );
+      return;
+    }
+
+    // Validación salario, verifica si es un número
+    if (!isNumeric(formPost.salary)) {
+      mostrarError("El salario debe ser un número.");
       return;
     }
 
@@ -61,6 +68,19 @@ const PostForm = (props) => {
         credentials: "include",
       }
     );
+    mostrarExito(`Publicación de tipo ${formPost.type} creada con éxito.`);
+
+    // Reset form
+    setFormPost({
+      author: props.name,
+      title: "",
+      image: "",
+      date: currentDate,
+      body: "",
+      type: "",
+      salary: "0",
+      company: "",
+    });
   };
   return (
     <>

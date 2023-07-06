@@ -28,16 +28,17 @@ const Register = () => {
           rut: rut,
           email: email,
           password: password,
-          rol: role
+          rol: role,
         }),
         credentials: "include",
       }
     );
     if (res.ok) {
-      setIsUserRegisterMsg("Usuario Creado Correctamente... Redireccionando al login");
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      router.push('/login');
-
+      setIsUserRegisterMsg(
+        "Usuario Creado Correctamente... Redireccionando al login"
+      );
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      router.push("/login");
     } else {
       setIsUserRegisterMsg("Usuario Ingresado Ya Existe");
       console.log("Usuario ya existe");
@@ -90,7 +91,7 @@ const Register = () => {
           value={role}
           onChange={(e) => setRole(e.target.value)}
         >
-          <option selected>Escoja Rol</option>
+          <option defaultValue={""}>Escoja Rol</option>
           <option value="Egresado">Egresado</option>
           <option value="Invitado">Invitado</option>
         </select>
