@@ -1,7 +1,14 @@
+// Import CSS GLOBAL
 import "@/styles/globals.css";
+// Import USER AUTH
 import { MyAuthContext } from "@/context/MyAuthContext";
 
+// Import Components
 import NavLayout from "@/components/navigation/navLayout";
+
+// Import Toast
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Optimized Font
 import { Poppins } from "next/font/google";
@@ -26,6 +33,18 @@ export default function App({ Component, pageProps }) {
         `}</style>
 
         <Component {...pageProps} />
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </NavLayout>
     </MyAuthContext>
   );

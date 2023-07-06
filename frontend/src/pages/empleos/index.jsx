@@ -28,7 +28,7 @@ export default function Index() {
   return (
     <div className="w-10/12 mx-auto">
       <div className="flex flex-row justify-between items-center">
-        <AgregarEmpleo />
+        <AgregarEmpleo setEmpleos={setEmpleos} />
         <SearchBar />
       </div>
       <div className="flex md:flex-row flex-col justify-between items-center mt-4 gap-4">

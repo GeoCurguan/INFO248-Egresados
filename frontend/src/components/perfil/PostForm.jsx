@@ -15,7 +15,7 @@ const PostForm = (props) => {
     date: currentDate,
     body: "",
     type: "",
-    salary: 0,
+    salary: "0",
     company: "",
   });
   const postTypes = {

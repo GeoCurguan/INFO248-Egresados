@@ -1,33 +1,43 @@
 // Import React
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Import user
 import { useAuthContext } from "@/context/MyAuthContext";
 
 // Import utils
 import { checkUrlImg, isNumeric } from "@/utils";
+import { mostrarError, mostrarExito } from "@/utils/alerts";
 
-const ModalForm = ({ setShowModal }) => {
+// Import toast
+// import { toast } from "react-toastify";
+
+// Import components
+export const reloadData = async ({ setEmpleos }) => {
+  fetch(
+    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostByType/oferta_laboral`
+  )
+    .then((res) => res.json())
+    .then((data) => setEmpleos(data.posts));
+};
+
+const ModalForm = ({ setShowModal, setEmpleos }) => {
   // month/day/year
   const currentDate = new Date().toLocaleDateString("en-US");
   const { user } = useAuthContext();
+  const fullName = user.nombres + " " + user.apellidos;
 
   const [formPost, setFormPost] = useState({
-    author: user.nombres + " " + user.apellidos,
+    author: fullName,
     title: "",
     image: "",
     date: currentDate,
     body: "",
-    type: "",
-    salary: 0,
+    type: "oferta_laboral",
+    salary: "0",
     company: "",
   });
 
   const handleChange = (e) => {
-    if (e.target.name === "type") {
-      setPostType(e.target.value);
-    }
-
     setFormPost({
       ...formPost,
       [e.target.name]: e.target.value,
@@ -39,49 +49,46 @@ const ModalForm = ({ setShowModal }) => {
 
     // Validación de URL de imagen
     if (!checkUrlImg(formPost.image)) {
-      alert(
-        "La URL de la imagen no es válida, procure utilizar https://, .png, .jpg o .jpeg"
+      mostrarError(
+        "El link debe comenzar con https:// y tener extensión jpg, jpeg o png"
       );
       return;
     }
 
     // Validación salario, verifica si es un número
     if (!isNumeric(formPost.salary)) {
-      alert("El salario debe ser un número");
+      mostrarError("El salario debe ser un número.");
       return;
     }
 
-    console.log("enviando...");
+    console.log(JSON.stringify(formPost));
 
-    // const res = await fetch(
-    //   process.env.NEXT_PUBLIC_URL_BACKEND +
-    //     "/api/posts/createPost/" +
-    //     props.userId,
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Accept: "application/json",
-    //       "auth-token": localStorage.getItem("token"),
-    //     },
-    //     body: JSON.stringify(formPost),
-    //     credentials: "include",
-    //   }
-    // );
+    try {
+      const res = await fetch(
+        process.env.NEXT_PUBLIC_URL_BACKEND +
+          "/api/posts/createPost/" +
+          user._id,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "auth-token": localStorage.getItem("token"),
+          },
+          body: JSON.stringify(formPost),
+          credentials: "include",
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+
+    mostrarExito("¡Oferta Laboral publicada!");
+
+    // Refrescamos
+    reloadData({ setEmpleos });
 
     // Cerramos el modal
-    // Reset form
-    setFormPost({
-      author: user.nombres + " " + user.apellidos,
-      title: "",
-      image: "",
-      date: currentDate,
-      body: "",
-      type: "",
-      salary: 0,
-      company: "",
-    });
-
     setShowModal(false);
   };
 
@@ -96,6 +103,7 @@ const ModalForm = ({ setShowModal }) => {
             Nombre de la empresa
           </label>
           <input
+            placeholder="Titulo para mi Publicación"
             title="Título del trabajo a ofrecer"
             value={formPost.title}
             onChange={handleChange}
@@ -104,7 +112,7 @@ const ModalForm = ({ setShowModal }) => {
             name="title"
             id="title"
             autoComplete="title"
-            className="focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-sm sm:text-md border-gray-300 rounded-md"
+            className="bg-gray-50 h-8 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
         <div className="w-full">
@@ -115,6 +123,7 @@ const ModalForm = ({ setShowModal }) => {
             URL de la imágen
           </label>
           <input
+            placeholder="https://www.example.com/image.jpg"
             title="Url de la imágen del trabajo a ofrecer"
             type="text"
             name="image"
@@ -122,7 +131,7 @@ const ModalForm = ({ setShowModal }) => {
             value={formPost.image}
             onChange={handleChange}
             autoComplete="image"
-            className="border mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-sm sm:text-md border-gray-300 rounded-md"
+            className="bg-gray-50 h-8 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
         <div className="w-full">
@@ -133,6 +142,7 @@ const ModalForm = ({ setShowModal }) => {
             Cuerpo de la publicación
           </label>
           <input
+            placeholder="Cuerpo de la Publicación"
             title="Descripción del trabajo a ofrecer"
             type="text"
             name="body"
@@ -141,7 +151,7 @@ const ModalForm = ({ setShowModal }) => {
             value={formPost.body}
             onChange={handleChange}
             autoComplete="body"
-            className="border mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-sm sm:text-md border-gray-300 rounded-md"
+            className="bg-gray-50 h-8 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
 
@@ -153,6 +163,7 @@ const ModalForm = ({ setShowModal }) => {
             Salario
           </label>
           <input
+            placeholder="0"
             title="Salario del trabajo a ofrecer"
             type="text"
             name="salary"
@@ -160,7 +171,7 @@ const ModalForm = ({ setShowModal }) => {
             value={formPost.salary}
             onChange={handleChange}
             autoComplete="salary"
-            className="border mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-sm sm:text-md border-gray-300 rounded-md"
+            className="bg-gray-50 h-8 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
 
@@ -172,6 +183,7 @@ const ModalForm = ({ setShowModal }) => {
             Compañía
           </label>
           <input
+            placeholder="Empresa"
             title="Compañía del trabajo a ofrecer"
             type="text"
             name="company"
@@ -179,15 +191,16 @@ const ModalForm = ({ setShowModal }) => {
             value={formPost.company}
             onChange={handleChange}
             autoComplete="company"
-            className="border mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-sm sm:text-md border-gray-300 rounded-md"
+            className="bg-gray-50 h-8 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
       </div>
-      <input
+      <button
         type="submit"
         className="bg-blue-700 hover:bg-blue-800 text-white py-2 px-4 rounded  cursor-pointer mt-4"
-        value="Ofrecer empleo"
-      />
+      >
+        Publicar Oferta
+      </button>
     </form>
   );
 };

@@ -17,7 +17,7 @@ export const ModalEsqueleto = ({ children, setShowModal }) => {
   );
 };
 
-export const Modal = ({ setShowModal }) => {
+export const Modal = ({ setShowModal, setEmpleos }) => {
   return (
     // Inicio de modal
     <ModalEsqueleto setShowModal={setShowModal}>
@@ -35,7 +35,7 @@ export const Modal = ({ setShowModal }) => {
           </p>
         </div>
         <div className="mt-5">
-          <ModalForm setShowModal={setShowModal} />
+          <ModalForm setShowModal={setShowModal} setEmpleos={setEmpleos} />
         </div>
       </div>
     </ModalEsqueleto>
