@@ -35,7 +35,7 @@ export const Modal = ({ setShowModal }) => {
           </p>
         </div>
         <div className="mt-5">
-          <ModalForm />
+          <ModalForm setShowModal={setShowModal} />
         </div>
       </div>
     </ModalEsqueleto>

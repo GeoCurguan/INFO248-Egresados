@@ -1,7 +1,7 @@
 // Ruta protegida,
 // Valida [auth]
 
-import { useAuthContext } from "../../context/MyAuthContext";
+import { useAuthContext } from "@/context/MyAuthContext";
 import ProfileSummary from "@/components/perfil/ProfileSummary";
 import ProtectedLogged from "@/components/protected/ProtectedLogged";
 import ProfileForm from "@/components/perfil/ProfileForm";

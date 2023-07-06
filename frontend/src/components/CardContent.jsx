@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import Egresado from "./egresados/Egresado";
 import Empleo from "./empleos/Empleo";
 

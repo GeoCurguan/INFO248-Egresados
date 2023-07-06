@@ -5,9 +5,8 @@ import Image from "next/image";
 import { formatCurrency } from "@/utils";
 
 const Egresado = ({ empleo }) => {
-  const { _id, author, title, image, date, body, type } = empleo;
-
-  const remuneracion = "20000";
+  const { _id, author, title, image, date, body, type, salary, company } =
+    empleo;
 
   return (
     <article className="flex flex-row justify-between items-center gap-4 p-4 bg-white rounded-lg shadow-md mb-4">
@@ -31,7 +30,7 @@ const Egresado = ({ empleo }) => {
               <p className="text-xs text-gray-400">
                 Publicado por:
                 <span className="inline-block w-2 h-2 rounded-full bg-gray-400 ml-1 mr-1"></span>
-                <span>{author}</span>
+                <span>{company || author}</span>
               </p>
               <span className="text-xs text-gray-400">
                 <time dateTime={date}>
@@ -46,10 +45,10 @@ const Egresado = ({ empleo }) => {
             {/* Remuneración  */}
             <aside>
               <p className="text-xs text-gray-400">Remuneración: </p>
-              {remuneracion ? (
+              {salary ? (
                 <>
                   <span className="inline-block w-2 h-2 rounded-full bg-gray-400 ml-1 mr-1"></span>
-                  <span>{formatCurrency(remuneracion)}</span>
+                  <span>{formatCurrency(salary)}</span>
                 </>
               ) : (
                 <>

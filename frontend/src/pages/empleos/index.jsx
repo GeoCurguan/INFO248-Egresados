@@ -1,4 +1,6 @@
+// Import React
 import { useEffect, useState } from "react";
+// Import Components
 import FiltroEmpleo from "@/components/empleos/FiltroEmpleo";
 import AgregarEmpleo from "@/components/empleos/AgregarEmpleo";
 import SearchBar from "@/components/SearchBar";

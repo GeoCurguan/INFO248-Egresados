@@ -12,7 +12,11 @@ export default function AgregarEmpleo() {
 
   return (
     <>
-      <button type="button" onClick={() => setShowModal(true)}>
+      <button
+        className="bg-blue-700 hover:bg-blue-800 text-white py-2 px-4 rounded"
+        type="button"
+        onClick={() => setShowModal(true)}
+      >
         Agregar empleo
       </button>
       {showModal ? <Modal setShowModal={setShowModal} /> : null}
