@@ -7,7 +7,7 @@ import Hero from "@/components/HeroContent";
 import Posts from "@/components/posts/Posts";
 
 export const heroContent = {
-  bg: "/placeholders/placeholder_hero.svg",
+  bg: "/portada.jpg",
   icon: "/icons/hero/beneficios.svg",
   title: "Beneficios",
 };

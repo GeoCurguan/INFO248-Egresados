@@ -84,7 +84,7 @@ const PostForm = (props) => {
   };
   return (
     <>
-      <form className="w-1/3" onSubmit={handleSubmit}>
+      <form className="w-1/3 ml-16" onSubmit={handleSubmit}>
         <div className="mb-6">
           <label
             htmlFor="title"
@@ -160,7 +160,7 @@ const PostForm = (props) => {
           postTypes[postType].map((campo) => (
             <div key={campo} className="mb-6">
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
-                {campo}
+                {campo === 'source' ? 'Fuente' : campo === 'salary' ? 'Salario Propuesto' : campo === 'company' ? 'Empresa' : campo}
               </label>
               <textarea
                 type="textarea"
