@@ -53,7 +53,7 @@ const ProfileForm = (props) => {
 
   return (
     <>
-      <form className="w-1/3" onSubmit={handleSubmit}>
+      <form className="w-1/3 ml-4" onSubmit={handleSubmit}>
         <div className="mb-6">
           <label
             htmlFor="password"

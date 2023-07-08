@@ -2,7 +2,7 @@ export const HeroIcon = ({ title = "", icon }) => {
   return (
     <div
       // red circle
-      className="flex justify-center items-center w-20 h-20 rounded-full bg-[--hero-icon] shadow-md 
+      className="flex justify-center items-center w-20 h-20 rounded-full bg-[--hero-icon] shadow-md
       "
     >
       <img src={icon} alt={`icon ${title}`} className="w-12 h-12" />
@@ -23,7 +23,7 @@ const Hero = ({ bg, icon, title }) => {
       <div className="flex justify-center z-10">
         <HeroIcon icon={icon} title={title} />
       </div>
-      <h1 className="text-3xl font-bold text-center z-10 drop-shadow-sm">
+      <h1 className="text-3xl font-bold text-center z-10 drop-shadow-sm text-white">
         {title}
       </h1>
       {/* general blur */}
