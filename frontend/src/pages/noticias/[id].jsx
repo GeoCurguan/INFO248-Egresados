@@ -34,7 +34,7 @@ const Post = ({ post }) => {
   const title_post = `Posts - ${id}`;
   const [loading, setLoading] = useState(true);
   // Data to display
-  const { author, body, date, id_user, image, title, type } = post;
+  const { author, body, date, id_user, image, title, type } = post || {};
 
   // Preload image
   useEffect(() => {
@@ -51,11 +51,7 @@ const Post = ({ post }) => {
       <Head>
         <title>{title_post}</title>
       </Head>
-      {loading ? (
-        <PostHero post={post} loading={loading} />
-      ) : (
-        <PostHero post={post} loading={loading} />
-      )}
+      {post && <PostHero post={post} loading={loading} />}
 
       <div className="container mx-auto px-4 py-8">
         <h2 className="text-2xl font-bold">{title}</h2>
@@ -75,16 +71,25 @@ const Post = ({ post }) => {
 export default Post;
 
 export async function getStaticProps({ params }) {
+  // Hacemos un fetch a la url con un body {type: "noticia"}
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostById/${params.id}`
+    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostById/${params.id}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ type: "noticia" }),
+    }
   );
+
   const post = await res.json();
   return { props: { post } };
 }
 
 export async function getStaticPaths() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostByType/Noticia`
+    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostByType/noticia`
   );
   const { posts } = await res.json();
   const paths = posts.map((post) => ({

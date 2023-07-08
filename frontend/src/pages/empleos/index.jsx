@@ -1,4 +1,6 @@
+// Import React
 import { useEffect, useState } from "react";
+// Import Components
 import FiltroEmpleo from "@/components/empleos/FiltroEmpleo";
 import AgregarEmpleo from "@/components/empleos/AgregarEmpleo";
 import SearchBar from "@/components/SearchBar";
@@ -12,9 +14,11 @@ export default function Index() {
   });
 
   useEffect(() => {
-    fetch("api/empleos")
+    fetch(
+      `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostByType/oferta_laboral`
+    )
       .then((res) => res.json())
-      .then((data) => setEmpleos(data));
+      .then((data) => setEmpleos(data.posts));
   }, []);
 
   useEffect(() => {
@@ -24,7 +28,7 @@ export default function Index() {
   return (
     <div className="w-10/12 mx-auto">
       <div className="flex flex-row justify-between items-center">
-        <AgregarEmpleo />
+        <AgregarEmpleo setEmpleos={setEmpleos} />
         <SearchBar />
       </div>
       <div className="flex md:flex-row flex-col justify-between items-center mt-4 gap-4">
@@ -35,13 +39,7 @@ export default function Index() {
         w-full h-[30rem] bg-gray-200 rounded-md shadow-lg p-4 overflow-auto bar"
         >
           {empleos.map((empleo) => (
-            <CardContent
-              key={empleo.id}
-              tipo={"empleo"}
-              nombreEmpresa={empleo.nombreEmpresa}
-              resumenTrabajo={empleo.resumenTrabajo}
-              tags={empleo.tags}
-            />
+            <CardContent key={empleo._id} tipo={"empleo"} empleo={empleo} />
           ))}
         </main>
       </div>

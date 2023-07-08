@@ -4,6 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 
 // Import Components
+import ProtectedLogged from "@/components/protected/ProtectedLogged";
 import ProfileSummary from "@/components/perfil/ProfileSummary";
 
 export default function PerfilId({ perfil }) {
@@ -12,7 +13,7 @@ export default function PerfilId({ perfil }) {
   const title_perfil = `Perfil - ${perfil.nombres}`;
 
   return (
-    <>
+    <ProtectedLogged>
       <Head>
         <title>{title_perfil}</title>
       </Head>
@@ -41,7 +42,7 @@ export default function PerfilId({ perfil }) {
           </Link>
         </p>
       </div>
-    </>
+    </ProtectedLogged>
   );
 }
 

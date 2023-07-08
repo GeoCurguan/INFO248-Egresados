@@ -1,29 +1,32 @@
+// Import React
 import { useState } from "react";
+
+// Import utils
+import { checkUrlImg, isNumeric } from "@/utils";
+import { mostrarError, mostrarExito } from "@/utils/alerts";
+
 const PostForm = (props) => {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth() + 1;
-  const day = today.getDate();
-  const formattedDate = `${day}/${month}/${year}`;
+  // month/day/year
+  const currentDate = new Date().toLocaleDateString("en-US");
 
   const [formPost, setFormPost] = useState({
     author: props.name,
     title: "",
-    image: "Imagen",
-    date: formattedDate,
+    image: "",
+    date: currentDate,
     body: "",
     type: "",
-    sueldo: 0,
-    empresa: "",
+    salary: "0",
+    company: "",
   });
   const postTypes = {
-    noticia: ['source'],
-    oferta_laboral: ['sueldo', 'empresa'],
+    noticia: ["source"],
+    oferta_laboral: ["salary", "company"],
   };
-  const [postType, setPostType] = useState('');
+  const [postType, setPostType] = useState("");
 
   const handleChange = (e) => {
-    if(e.target.name === 'type'){
+    if (e.target.name === "type") {
       setPostType(e.target.value);
     }
 
@@ -35,6 +38,21 @@ const PostForm = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validación de URL de imagen
+    if (!checkUrlImg(formPost.image)) {
+      mostrarError(
+        "La URL de la imagen no es válida, procure utilizar https://, .png, .jpg o .jpeg"
+      );
+      return;
+    }
+
+    // Validación salario, verifica si es un número
+    if (!isNumeric(formPost.salary)) {
+      mostrarError("El salario debe ser un número.");
+      return;
+    }
+
     const res = await fetch(
       process.env.NEXT_PUBLIC_URL_BACKEND +
         "/api/posts/createPost/" +
@@ -50,16 +68,33 @@ const PostForm = (props) => {
         credentials: "include",
       }
     );
+    mostrarExito(`Publicación de tipo ${formPost.type} creada con éxito.`);
+
+    // Reset form
+    setFormPost({
+      author: props.name,
+      title: "",
+      image: "",
+      date: currentDate,
+      body: "",
+      type: "",
+      salary: "0",
+      company: "",
+    });
   };
   return (
     <>
       <form className="w-1/3" onSubmit={handleSubmit}>
         <div className="mb-6">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+          <label
+            htmlFor="title"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+          >
             Titulo
           </label>
           <input
             type="text"
+            id="title"
             name="title"
             value={formPost.title}
             onChange={handleChange}
@@ -69,25 +104,32 @@ const PostForm = (props) => {
           />
         </div>
         <div className="mb-6">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
-            Titulo
+          <label
+            htmlFor="image"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+          >
+            URL Imágen
           </label>
           <input
             type="text"
+            id="image"
             name="image"
             value={formPost.image}
             onChange={handleChange}
             className="bg-gray-50 h-8 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="url img"
-            required
+            placeholder="https://www.example.com/image.jpg"
           />
         </div>
         <div className="mb-6">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+          <label
+            htmlFor="body"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+          >
             Cuerpo de la Publicación
           </label>
           <textarea
             type="textarea"
+            id="body"
             name="body"
             value={formPost.body}
             onChange={handleChange}
@@ -114,23 +156,22 @@ const PostForm = (props) => {
           </select>
         </div>
 
-
-        {postTypes[postType] && postTypes[postType].map((campo) => (
-            <div className="mb-6">
-            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
-            {campo}
-            </label>
-            <textarea
-              type="textarea"
-              name={campo}
-              value={formPost.campo}
-              onChange={handleChange}
-              className="bg-gray-50 h-8 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required
-            />
-          </div>
-
-        ))}
+        {postTypes[postType] &&
+          postTypes[postType].map((campo) => (
+            <div key={campo} className="mb-6">
+              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+                {campo}
+              </label>
+              <textarea
+                type="textarea"
+                name={campo}
+                value={formPost.campo}
+                onChange={handleChange}
+                className="bg-gray-50 h-8 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-400 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              />
+            </div>
+          ))}
 
         <button
           type="submit"

@@ -11,7 +11,7 @@ export interface IPost extends Document {
 }
 
 
-const postSchema = new Schema({
+export const postSchema = new Schema({
   id_user: {
     type: String,
     required: true,
@@ -42,42 +42,7 @@ const postSchema = new Schema({
   },
 });
 
-//Acá se puede extender a otras clases, ya sea Noticias, Ofertas Laborales, etc
 
 export default model<IPost>("Post", postSchema);
 
-export interface INewsPost extends IPost {
-  source: string;
-}
 
-//Si el required de source esta en true, no dejará publicar (¿porque sera?). Asi para cada tipo de post
-const newsPostSchema = postSchema.add({
-  source: {
-    type: String,
-    required: false,
-  },
-});
-
-export interface IJobOfferPost extends IPost {
-  sueldo: string;
-  empresa: string;
-}
-
-const jobOfferPostSchema = postSchema.add({
-  sueldo: {
-    type: String,
-    required: false,
-  },
-  empresa: {
-    type: String,
-    required: false,
-  },
-});
-
-export interface IBenefitsPost extends IPost {
-  category: string;
-}
-
-export const NewsPostModel = model<INewsPost>("NewsPost", newsPostSchema);
-export const JobOfferPostModel = model<IJobOfferPost>("JobOfferPost", jobOfferPostSchema);
-export const BenefitsPostModel = model<IBenefitsPost>("BenefitsPost", postSchema);

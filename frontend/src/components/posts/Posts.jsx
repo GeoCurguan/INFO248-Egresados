@@ -4,7 +4,7 @@ import { useState } from "react";
 import CardPost from "./CardPost";
 import Pagination from "./Pagination";
 
-const Posts = ({ posts }) => {
+const Posts = ({ path, posts }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
 
@@ -13,13 +13,13 @@ const Posts = ({ posts }) => {
       {posts
         .slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage)
         .map((post) => (
-          <CardPost key={post._id} post={post} />
+          <CardPost key={post._id} path={path} post={post} />
         ))}
-      <Pagination
+      {/* <Pagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         postsPerPage={postsPerPage}
-      />
+      /> */}
     </>
   );
 };

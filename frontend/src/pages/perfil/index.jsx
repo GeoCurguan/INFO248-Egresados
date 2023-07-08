@@ -1,7 +1,7 @@
 // Ruta protegida,
 // Valida [auth]
 
-import { useAuthContext } from "../../context/MyAuthContext";
+import { useAuthContext } from "@/context/MyAuthContext";
 import ProfileSummary from "@/components/perfil/ProfileSummary";
 import ProtectedLogged from "@/components/protected/ProtectedLogged";
 import ProfileForm from "@/components/perfil/ProfileForm";
@@ -9,6 +9,7 @@ import PostForm from "@/components/perfil/PostForm";
 
 const Ruta = () => {
   const { user, handleLogout } = useAuthContext();
+  console.log("user from perfil/index.jsx: ", user);
 
   return (
     <ProtectedLogged>

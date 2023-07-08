@@ -4,7 +4,7 @@ import { useState } from "react";
 import Modal from "@/components/empleos/modal/Modal";
 import { useAuthContext } from "@/context/MyAuthContext";
 
-export default function AgregarEmpleo() {
+export default function AgregarEmpleo({ setEmpleos }) {
   const [showModal, setShowModal] = useState(false);
 
   const { auth } = useAuthContext();
@@ -12,10 +12,16 @@ export default function AgregarEmpleo() {
 
   return (
     <>
-      <button type="button" onClick={() => setShowModal(true)}>
+      <button
+        className="bg-blue-700 hover:bg-blue-800 text-white py-2 px-4 rounded"
+        type="button"
+        onClick={() => setShowModal(true)}
+      >
         Agregar empleo
       </button>
-      {showModal ? <Modal setShowModal={setShowModal} /> : null}
+      {showModal ? (
+        <Modal setShowModal={setShowModal} setEmpleos={setEmpleos} />
+      ) : null}
     </>
   );
 }

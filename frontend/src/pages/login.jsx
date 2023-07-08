@@ -2,12 +2,11 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useAuthContext } from "../context/MyAuthContext";
+import { mostrarExito, mostrarError } from "@/utils/alerts";
 
 const Login = () => {
   const [username, setUsername] = useState("test@gmail.com");
   const [password, setPassword] = useState("test");
-
-  const [loginMessage, setLoginMessage] = useState("");
 
   const { handleLogin } = useAuthContext();
   const router = useRouter();
@@ -31,17 +30,21 @@ const Login = () => {
       }
     );
 
+    // add delay
+
     if (res.ok) {
       const token = res.headers.get("auth-token");
+      mostrarExito("Login Exitoso");
+
       handleLogin(token);
       router.push("/perfil");
     } else {
-      setLoginMessage("Usuario Incorrecto o No Registrado");
+      mostrarError("Usuario Incorrecto o No Registrado");
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="flex flex-col items-center justify-center w-full px-4">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center justify-center w-full px-4"
@@ -61,14 +64,13 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {<>{loginMessage ? <span> {loginMessage}</span> : <></>}</>}
 
         <button type="submit" className="bg-gray-900 text-white p-2 rounded-lg">
           Login
         </button>
       </form>
       <button
-        className="bg-gray-900 text-white p-2 rounded-lg"
+        className="bg-gray-900 text-white p-2 rounded-lg mt-2"
         onClick={() => router.push("/register")}
       >
         Crear Cuenta
