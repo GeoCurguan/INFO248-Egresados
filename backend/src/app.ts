@@ -10,12 +10,12 @@ dotenv.config();
 const app: Application = express();
 
 //Settings
-app.set("port", process.env.PORT_BACKEND || 5000);
+app.set("port", process.env.PORT_BACKEND || 7667);
 
 //Middleware
 app.use(
   cors({
-    origin: process.env.URL_FRONTEND || "http://localhost:3000",
+    origin: process.env.URL_FRONTEND || "http://146.83.216.251:7666",
     credentials: true, // Agrega esta lsínea paras permitir el envío de credencssiales
     exposedHeaders: ["auth-token"], // Agrega esta línea para permitir el encabezado
   })

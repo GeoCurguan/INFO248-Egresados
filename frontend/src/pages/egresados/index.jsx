@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import FiltroEgresado from "@/components/egresados/FiltroEgresado";
+import FiltroEgresado from "@/components/Egresados/FiltroEgresado";
 import CardContent from "@/components/CardContent";
 import SearchBar from "@/components/SearchBar";
 

@@ -1,4 +1,4 @@
-import Egresado from "./egresados/Egresado";
+import Egresado from "./Egresados/Egresado";
 import Empleo from "./empleos/Empleo";
 
 export default function CardContent({

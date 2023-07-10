@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+  mongodb-egresados:
+    image: mongo:4.4.18
+    container_name: mongodb
+    restart: always
+    ports:
+      - 7668:27017
+
+  back-egresados:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: back-egresados
+    restart: always
+    depends_on:
+      - mongodb-egresados
+    ports:
+      - 7667:7667
+
+  front-egresados:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: front-egresados
+    restart: always
+    depends_on:
+      - back-egresados
+    ports:
+      - 7666:7666

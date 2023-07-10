@@ -46,7 +46,7 @@ export default function PerfilId({ perfil }) {
   );
 }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/users/${params.id}`
   );
@@ -54,11 +54,11 @@ export async function getStaticProps({ params }) {
   return { props: { perfil } };
 }
 
-export async function getStaticPaths() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/users`);
-  const perfiles = await res.json();
-  const paths = perfiles.map((perfil) => ({
-    params: { id: perfil._id.toString() },
-  }));
-  return { paths, fallback: false };
-}
+// export async function getStaticPaths() {
+//   const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/api/users`);
+//   const perfiles = await res.json();
+//   const paths = perfiles.map((perfil) => ({
+//     params: { id: perfil._id.toString() },
+//   }));
+//   return { paths, fallback: false };
+// }

@@ -70,7 +70,7 @@ const Post = ({ post }) => {
 
 export default Post;
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   // Hacemos un fetch a la url con un body {type: "beneficio"}
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostById/${params.id}`,
@@ -87,14 +87,14 @@ export async function getStaticProps({ params }) {
   return { props: { post } };
 }
 
-export async function getStaticPaths() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostByType/beneficio`
-  );
-  const { posts } = await res.json();
-  const paths = posts.map((post) => ({
-    params: { id: post._id.toString() },
-  }));
+// export async function getStaticPaths() {
+//   const res = await fetch(
+//     `${process.env.NEXT_PUBLIC_URL_BACKEND}/api/posts/getPostByType/beneficio`
+//   );
+//   const { posts } = await res.json();
+//   const paths = posts.map((post) => ({
+//     params: { id: post._id.toString() },
+//   }));
 
-  return { paths, fallback: false };
-}
+//   return { paths, fallback: false };
+// }
